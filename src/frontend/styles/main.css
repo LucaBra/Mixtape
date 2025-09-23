@@ -93,10 +93,15 @@ p {
   font-size:19px;
   max-width: 70%;
   text-align: center;
-  padding: 30px;
+  padding: 15px;
   margin: 0 auto;
 }
-
+blockquote {
+	padding-top: 25px;
+	padding-bottom:10px;
+	max-width: 70%;
+	margin: 0 auto;
+}
 .imageflex {
   display: flex;
   align-items: center;
@@ -125,6 +130,7 @@ p {
 
 .button {
   background-color: var(--cor-primaria);
+  border-radius: 20px;
   border: none;
   color: white;
   padding: 15px 32px;
@@ -162,5 +168,26 @@ p {
   .glass {
     width: 90% !important;
   }
+}
+.testimonials {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+}
+
+.testimonial {
+  flex: 1 1 300px;
+  max-width: 300px;
+  padding: 20px;
+  text-align: center;
+}
+.alerta {
+	margin-top: 20px;
+	padding: 10px 10px;
+	border-radius: 10px;
+	border: 3px rgba(255, 98, 55, 0.6);
+	background: rgba(255, 98, 55, 0.4);
+	color: rgba(255, 98, 55, 1);
 }
 
