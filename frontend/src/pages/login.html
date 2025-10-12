@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/login.css">
+    <title>Login Mixtape</title>
+</head>
+<body>
+    <!-- Main com todo o conteúdo da tela -->
+    <main class="container">
+        <!-- Logo/apresentação da página -->
+        <header class="logo">
+            <h1>Mixtape</h1>
+            <p>Bem-vindo de volta!</p>
+        </header>
+        
+        <!-- Alerta caso a senha ou email estejam incorretos -->
+        <div class="alerta" id="alerta" role="alert">
+            Usuário ou senha incorretos
+        </div>
+        
+        <!-- Formulário de login -->
+        <form id="loginForm" novalidate>
+            <div class="form-group">
+                <label for="email">E-mail</label>
+                <input 
+                    type="email" 
+                    id="email" 
+                    name="email" 
+                    placeholder="seu@email.com"
+                    required
+                    aria-required="true"
+                >
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Senha</label>
+                <input 
+                    type="password" 
+                    id="password" 
+                    name="password" 
+                    placeholder="••••••••"
+                    required
+                    aria-required="true"
+                >
+            </div>
+            
+            <!-- Recuperar senha -->
+            <div class="forgot-password">
+                <a href="#recuperar">Esqueceu sua senha?</a>
+            </div>
+            
+            <!-- Botão de login -->
+            <button type="submit" class="btn">Entrar</button>
+            
+            <div class="divider">ou</div>
+            
+            <div class="register">
+                Não tem uma conta? <a href="#cadastro">Cadastre-se</a>
+            </div>
+        </form>
+    </main>
+
+    <!-- Link para o script de login -->
+    <script src="../scripts/login.js"></script>
+</body>
+</html>
