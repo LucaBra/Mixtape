@@ -1,69 +1,120 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-	<head>
-		<meta charset="UTF-8">
-		<title>MIXTAPE</title>
-		<meta name="description" content="Escute milhares de músicas com ferramentas para modificar sua experiência, criando sua própria forma de curtir e interagir com diferentes áudios. Cadastre já sua conta para baixar e publicar áudios diversos!">
-		<link rel="stylesheet" href="main.css">
-	</head>
-	<body>
-		<section>
-			<ul class="glass">
-		  		<li><a href="default.asp"><img src="logo.gif" alt="logo da plataforma" style="width:64px;height:64px;"></a></li>
-		  		<li><a href="about.asp">About</a></li>
-			</ul>
-	  	</section>
-	
-	  	<section class="section">
-	  		<h1>MIXTAPE</h1>
-	 		<h2>O <strong>Melhor</strong> Site de Musica de <em>Todos os Tempos,</em><br>feito por musicos para musicos!</h2>
-		</section>
-	
-	  	<section class="section">
-			<div class="imageflex">
-		  		<img src="https://media1.tenor.com/m/HMFUHlES34gAAAAd/headphones-skype-emoji-headphones-emoji.gif" alt="Imagem de uma pessoa feliz com um fone de ouvido escutando musica" style="width:400px;height:400px;border-radius:20px;">
-		  		<p class="imageflexcontent"> plataforma que da a liberdade ao usuario, permitindo-o a escutar, baixar e <e>compartilhar</e> músicas e sons diversos!</p>
-			</div>
-	  	</section>
-	
-  		<section class="section">
-	    	<p>Com o <em>MIXTAPE</em>, produtores de áudio podem compartilhar seu trabalho de forma rápida
-	      e simples, a plataforma possibilita fazer o upload de arquivos WAV, MP3, AAC e inúmeros outros
-	      formatos de áudio com apenas um click.</p>
-	 	</section>
-		<h2 class="section">Editor de áudio embutido e acessível</h2>
-	 	<section class="section">
-	    
-			<p>Um poderoso recurso que permite a edição dos arquivos carregados a fim de tornar a edição de
-	      áudio mais acessível para pequenos produtores, sem com que eles precisem de um software dedicado
-	      com custo elevado. A mesa de sons conta com opções de manipulação da reverberação, <i>pitch</i>, equalização, etc.</p>
-  		</section>
-	
-	 	<section class="section">
-	 		<h2>COMECE JÁ</h2>
-			<div class="center">
-	  			<button class="button">CLIQUE AQUI!</button>
-			</div>
-	  	</section>
-	
-	 	<section class="section">
-		 	<h2>Veja a opniniao de outros usuarios</h2>
-	      	<div class="testimonials">
-				<div class="glass testimonial">
-					<blockquote>"Melhor Plataforma que já usei na minha vida"</blockquote>
-					<p style="font-size:17px">- Usuario Anonimo <img style="width:20px;height:20px;" src="user.jpg"></p>
-				</div>
-				<div class="glass testimonial">
-					<blockquote>A música dá alma ao universo, asas à mente, voo à imaginação, e vida à tudo!</blockquote>
-					<p>- Platão <img src="platao.jpg" style="width:20px;height:20px;"></p>
-			  </div>
-			</div>
-		</section>
-	
-		<section class="alerta">
-	 		<p><strong>ATENÇÃO:</strong> A mesa de sons é um recurso cujo desenvolvimento ainda está em 
-	    progresso, instabilidades podem ser encontradas. Pedimos a colaboração e compreensão, no caso 
-	    de qualquer complicação, contate o suporte.</p>
-		</section>
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>MIXTAPE</title>
+    <meta
+      name="description"
+      content="Escute milhares de músicas com ferramentas para modificar sua experiência, criando sua própria forma de curtir e interagir com diferentes áudios. Cadastre já sua conta para baixar e publicar áudios diversos!"
+    />
+    <link rel="stylesheet" href="./styles/main.css" />
+  </head>
+  <body>
+    <nav>
+      <div class="glass">
+        <div class="nav-container">
+          <div class="nav-logo">
+            <a href="#home">
+              <img src="logo.gif" alt="Logo da plataforma Mixtape" />
+            </a>
+          </div>
+
+          <ul class="nav-links">
+            <li><a href="#sobre">Sobre</a></li>
+            <li><a href="#recursos">Recursos</a></li>
+            <li><a href="#depoimentos">Depoimentos</a></li>
+          </ul>
+
+          <div class="nav-auth">
+            <a href="./pages/" class="btn-login">Login</a>
+            <a href="#cadastro" class="btn-cadastro">Cadastrar</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <header id="home" class="section">
+        <h1>MIXTAPE</h1>
+        <h2>
+          O <strong>Melhor</strong> Site de Música de <em>Todos os Tempos,</em
+          ><br />feito por músicos para músicos!
+        </h2>
+      </header>
+
+      <section id="sobre" class="section">
+        <div class="imageflex">
+          <img
+            src="https://media1.tenor.com/m/HMFUHlES34gAAAAd/headphones-skype-emoji-headphones-emoji.gif"
+            alt="Emoji animado de fones de ouvido representando a experiência musical"
+          />
+          <p class="imageflexcontent">
+            Plataforma que dá a liberdade ao usuário, permitindo-o a escutar,
+            baixar e <strong>compartilhar</strong> músicas e sons diversos!
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <p>
+          Com o <em>MIXTAPE</em>, produtores de áudio podem compartilhar seu
+          trabalho de forma rápida e simples. A plataforma possibilita fazer o
+          upload de arquivos WAV, MP3, AAC e inúmeros outros formatos de áudio
+          com apenas um clique.
+        </p>
+      </section>
+
+      <section id="recursos" class="section">
+        <h2>Editor de áudio embutido e acessível</h2>
+        <p>
+          Um poderoso recurso que permite a edição dos arquivos carregados a fim
+          de tornar a edição de áudio mais acessível para pequenos produtores,
+          sem que eles precisem de um software dedicado com custo elevado. A
+          mesa de sons conta com opções de manipulação da reverberação,
+          <em>pitch</em>, equalização, etc.
+        </p>
+      </section>
+
+      <section class="section">
+        <h2>COMECE JÁ</h2>
+        <div class="center">
+          <button class="button">CLIQUE AQUI!</button>
+        </div>
+      </section>
+
+      <section id="depoimentos" class="section">
+        <h2>Veja a opinião de outros usuários</h2>
+        <div class="testimonials">
+          <div class="glass testimonial">
+            <blockquote>
+              "Melhor Plataforma que já usei na minha vida"
+            </blockquote>
+            <p>
+              <strong>Usuário Anônimo</strong>
+              <img src="user.jpg" alt="Foto do usuário" />
+            </p>
+          </div>
+          <div class="glass testimonial">
+            <blockquote>
+              "A música dá alma ao universo, asas à mente, voo à imaginação, e
+              vida à tudo!"
+            </blockquote>
+            <p>
+              <strong>Platão</strong>
+              <img src="platao.jpg" alt="Foto de Platão" />
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <aside class="alerta" role="alert">
+        <p>
+          <strong>ATENÇÃO:</strong> A mesa de sons é um recurso cujo
+          desenvolvimento ainda está em progresso, instabilidades podem ser
+          encontradas. Pedimos a colaboração e compreensão, no caso de qualquer
+          complicação, contate o suporte.
+        </p>
+      </aside>
+    </main>
+  </body>
 </html>
