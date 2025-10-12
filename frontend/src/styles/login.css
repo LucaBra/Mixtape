@@ -1,0 +1,227 @@
+:root {
+  --cor-primaria: #4c9bdb;
+  --cor-escura: #264e6e;
+  --cor-branca: #d9d9d9;
+  --cor-gradiente-1: #2a7b9b;
+  --cor-gradiente-2: #0d2630;
+  --cor-gradiente-3: #0a1e26;
+  --cor-gradiente-4: #000000;
+  --cor-gradiente-5: #0b2736;
+  --cor-alerta: #ff6237;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(
+    135deg,
+    var(--cor-gradiente-1) 0%,
+    var(--cor-gradiente-2) 25%,
+    var(--cor-gradiente-3) 40%,
+    var(--cor-gradiente-4) 50%,
+    var(--cor-gradiente-3) 60%,
+    var(--cor-gradiente-5) 75%,
+    var(--cor-gradiente-1) 100%
+  );
+  padding: 1rem;
+}
+
+.container {
+  width: 100%;
+  max-width: 400px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logo {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.logo h1 {
+  color: var(--cor-primaria);
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.logo p {
+  color: var(--cor-branca);
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  color: var(--cor-branca);
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.875rem;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  color: white;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: var(--cor-primaria);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.form-group input::placeholder {
+  color: rgba(217, 217, 217, 0.5);
+}
+
+.forgot-password {
+  text-align: right;
+  margin-bottom: 1.5rem;
+}
+
+.forgot-password a {
+  color: var(--cor-primaria);
+  text-decoration: none;
+  font-size: 0.875rem;
+  transition: color 0.3s ease;
+}
+
+.forgot-password a:hover {
+  color: var(--cor-branca);
+}
+
+.btn {
+  width: 100%;
+  padding: 1rem;
+  border: none;
+  border-radius: 10px;
+  background: var(--cor-primaria);
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.btn:hover {
+  background: var(--cor-escura);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(76, 155, 219, 0.4);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  margin: 1.5rem 0;
+  color: var(--cor-branca);
+  opacity: 0.6;
+  font-size: 0.875rem;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.divider::before {
+  margin-right: 1rem;
+}
+
+.divider::after {
+  margin-left: 1rem;
+}
+
+.register {
+  text-align: center;
+  color: var(--cor-branca);
+  font-size: 0.9rem;
+}
+
+.register a {
+  color: var(--cor-primaria);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.register a:hover {
+  color: var(--cor-branca);
+}
+
+.alerta {
+  background: var(--cor-alerta);
+  color: white;
+  padding: 0.875rem;
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  display: none;
+}
+
+.alerta.show {
+  display: block;
+  animation: slideDown 0.3s ease;
+}
+
+/* Animação para o alerta */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+  .container {
+    padding: 3rem;
+  }
+
+  .logo h1 {
+    font-size: 2.5rem;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .container {
+    max-width: 450px;
+  }
+}
