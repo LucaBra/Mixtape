@@ -13,7 +13,7 @@ form.addEventListener("submit", (e) => {
     alerta.classList.add("show");
     setTimeout(() => alerta.classList.remove("show"), 3000);
   } else {
-    // Aqui você colocaria sua lógica de autenticação
-    console.log("Login tentado com:", email);
+    // Se login correto, redireciona para a página inicial
+    window.location.href = "../pages/paginaInicial.html";
   }
 });
