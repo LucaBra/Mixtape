@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Biblioteca de músicas do Mixtape - Selecione e edite suas músicas favoritas"/>
+    <meta name="keywords" content="mixtape, biblioteca, músicas, editar áudio, playlist"/>
+    <link rel="stylesheet" href="../styles/paginaInicial.css" />
+    <title>Biblioteca - Mixtape | Suas Músicas</title>
+
+
+  </head>
+  <body>
+    <header>
+      <div class="header-content">
+        <div class="header-top">
+          <a href="#" class="logo">Mixtape</a>
+          <div class="user-menu">
+            <div class="user-avatar">U</div>
+          </div>
+        </div>
+        <div class="search-container">
+          <div class="search-box">
+            <span class="search-icon">🔍</span>
+            <input
+              type="search"
+              id="searchInput"
+              placeholder="Buscar música ou artista..."
+              aria-label="Buscar músicas"
+            />
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <h1 class="page-title">Minha Biblioteca</h1>
+      <p class="music-count" id="musicCount">15 músicas</p>
+
+      <!-- Mobile - Lista -->
+      <div class="music-list" id="musicList"></div>
+
+      <!-- Desktop - Grid -->
+      <div class="music-grid" id="musicGrid"></div>
+
+      <!-- Sem resultados -->
+      <div class="no-results" id="noResults" style="display: none">
+        <div class="no-results-icon">🎵</div>
+        <h3>Nenhuma música encontrada</h3>
+        <p>Tente buscar por outro termo</p>
+      </div>
+    </main>
+  </body>
+</html>
