@@ -1,0 +1,450 @@
+:root{
+    --cor-primaria: #4C9BDB;--cor-escura: #264E6E;--cor-branca: #D9D9D9;
+    --font-main: 'Arial', sans-serif;
+    --padding-section: 20px;
+}
+
+body{
+    background: rgba(12, 17, 31, 1);
+    color: var(--cor-branca);
+    font-family: var(--font-main);
+    font-size: 16px;
+    line-height: 1.6;
+    display: grid;
+    grid-template-areas:
+      "header header header"
+      "space main sidebar"
+      "footer footer footer";
+    grid-template-columns:1fr 12fr 1fr;
+    grid-template-rows: 1fr auto 1fr;
+    row-gap: 8px;
+    column-gap: 50px;
+    min-height: 100vh;
+    max-width: 100vw;
+    overflow-y: auto;
+    padding-top: 10px;
+    padding-bottom: 20px;
+}
+
+#topbar {
+    grid-area: header;
+    grid-column: span 2;
+    align-items: center;
+    justify-content: center;
+}
+
+#topbar h1 {
+    color: var(--cor-branca);
+    position: absolute;
+    margin:0;
+    top:0;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2em;
+    padding-top: 10px;
+}
+#topbar h2 {
+    color: var(--cor-primaria);
+    top: 0;
+    margin-left: 20px;
+    font-size: 1.5em;
+    padding-top: 10px;
+}
+
+
+nav {
+  grid-area: sidebar;
+  grid-column-start: 3;
+  grid-row: 2;
+  background-color: rgb(59, 59, 59);
+  border-color: var(--cor-primaria);
+  border-left: 4px solid var(--cor-primaria);
+  border-top: 4px solid var(--cor-primaria);
+  border-bottom: 4px solid var(--cor-primaria);
+  border-radius: 5px 0 0 5px;   
+}
+
+nav ul{
+    list-style-type: none;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+
+}
+nav ul li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid transparent;
+}
+
+nav ul li:hover {
+    background-color: var(--cor-primaria);
+    border: 2px solid var(--cor-primaria);
+    border-radius: 10px;
+    cursor: pointer;
+    color: var(--cor-escura);
+    font-size: 12px;
+    transition: content 0.5s ease;
+}
+
+footer{
+  border-top: 1px solid currentColor;     /* 'border-t' → top border, color depends on current text color or custom */
+  height: var(--player-height);           /* 'h-[--player-height]' → uses a CSS variable for height */
+  width: 100%;                            /* 'w-full' */
+  display: flex;                          /* 'flex' */
+  align-items: center;                    /* 'items-center' → vertical centering of children */
+  position: fixed;                        /* 'fixed' → fixed to viewport */
+  bottom: 0;                              /* 'bottom-0' */
+  left: 0;                                /* 'left-0' */
+  right: 0;                               /* 'right-0' */
+  z-index: 40;                            /* 'z-40' → stacking context */
+  background-color: var(--color-background);
+}
+
+.footer-bar {
+  background-color: var(--cor-primaria);
+  width: 100%;                      /* 'w-full' */
+  height: 100%;                     /* 'h-full' */
+  display: grid;                    /* 'grid' */
+  grid-row: 3;
+  grid-column: 2;
+  gap: 0.5rem;                      /* 'gap-2' → 8px spacing between grid items */
+  padding-left: 1rem;               /* 'px-4' → horizontal padding of 16px */
+  padding-right: 1rem;
+  grid-template-columns: minmax(250px,1fr) 
+  minmax(0px,1fr) minmax(0px,1fr) 
+  minmax(250px,1fr);
+}
+.albumview {
+  display: flex;               /* 'flex' → makes the element a flex container */
+  align-items: center;         /* 'items-center' → vertically center items */
+  gap: 0.5rem;                 /* 'gap-2' → spacing between items (8px) */
+  width: 100%;
+}
+
+.cover {
+  position: relative;
+  min-width: 70px;                  /* 'min-w-[70px]' */
+  max-width: 70px;                  /* 'max-w-[70px]' */
+  aspect-ratio: 1 / 1;              /* 'aspect-square' → keeps width and height equal */
+  background-size: cover;          /* 'bg-cover' → background image covers the element */
+  background-position: center;     /* 'bg-center' → centers the background image */
+  background-color: var(--color-skeleton); /* 'bg-skeleton' → placeholder color, often used for loading states */
+  border-radius: 0.25rem;          /* 'rounded' → default border radius (4px) */
+  overflow: hidden;                /* 'overflow-hidden' → hides content that overflows */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.coverimg {
+  aspect-ratio: 1 / 1;               /* 'aspect-square' → keeps width and height equal */
+  object-fit: cover;                 /* 'object-cover' → scales image to cover container */
+  width: 100%;                       /* 'w-full' → full width of parent */
+  height: 100%;                      /* 'h-full' → full height of parent */
+  cursor: pointer;                   /* 'cursor-pointer' → makes element clickable */
+  background-color: var(--color-skeleton); /* 'bg-skeleton' → placeholder/loading background */
+  color: transparent
+}
+.nameby {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  overflow: hidden;
+}
+.butbar {
+  grid-column: span 2;              /* 'col-span-2' → spans 2 columns in a grid layout */
+  display: flex;                    /* 'flex' → makes the element a flex container */
+  flex-direction: column;           /* 'flex-col' → stacks children vertically */
+  justify-content: center;          /* 'justify-center' → centers children vertically */
+  align-items: center;              /* 'items-center' → centers children horizontally */
+  padding-left: 1rem;               /* 'px-4' → horizontal padding of 16px */
+  padding-right: 1rem;
+  gap: 0.25rem;
+}
+
+#timenbar {
+  display: flex;           
+  width: 100%;             
+  justify-content: center;
+  align-items: center; 
+  gap: 0.5rem;
+
+}
+#playbar {
+  position: relative;         /* 'relative' */
+  height: 0.25rem;            /* 'h-1' → 1 * 0.25rem = 0.25rem (4px) */
+  width: 100%;                /* 'w-full' */
+  flex-grow: 1;               /* 'grow' → allows the element to grow to fill available space */
+  overflow: hidden;           /* 'overflow-hidden' */
+  border-radius: 9999px;      /* 'rounded-full' → fully rounded corners */
+  user-select: none;          /* 'select-none' */
+  background-color: var(--cor-escura);
+}
+#borderpb {
+  position: relative;        
+  height: 0.75rem;         
+  display: flex;         
+  touch-action: none;      
+  user-select: none;        
+  align-items: center; 
+  cursor: pointer;         
+  width: 32rem;
+}
+#pulley {
+  position: absolute;
+  left: calc(0% + 0px);
+  display: block;                     /* 'block' */
+  opacity: 0;                         /* 'opacity-0' */
+  height: 0.75rem;                    /* 'h-3' → 3 * 0.25rem = 0.75rem (12px) */
+  width: 0.75rem;                     /* 'w-3' */
+  cursor: pointer;                    /* 'cursor-pointer' */
+  user-select: none;                  /* 'select-none' */
+  border-radius: 9999px;              /* 'rounded-full' */
+  border-width: 2px;                  /* 'border-2' */
+  transition: background-color 0.2s, opacity 0.2s; /* 'transition-[background-color,opacity]' */
+  outline: none;                      /* 'focus-visible:outline-none' */
+  /* 'focus-visible:ring-transparent' — typically used with Tailwind's ring utilities */
+  /* You can simulate this with: */
+  box-shadow: 0 0 0 2px transparent;  /* if using ring effect */
+  background-color: var(--color-foreground); /* 'bg-foreground' */
+  border-color: var(--color-foreground);     /* 'border-foreground' */
+  transform: translateZ(0);           /* 'transform-gpu' → enables GPU acceleration */
+}
+
+/* Disabled state styles */
+.pulley:disabled {
+  pointer-events: none;              /* 'disabled:pointer-events-none' */
+  opacity: 0.5;                      /* 'disabled:opacity-50' */
+}
+
+#buttons {
+  display: flex;               /* 'flex' → makes the element a flex container */
+  width: 100%;                 /* 'w-full' → full width of parent */
+  gap: 1.5rem;                /* 'gap-1' → spacing between flex items (4px) */
+  justify-content: center;    /* 'justify-center' → center items horizontally */
+  align-items: center;        /* 'items-center' → center items vertically */
+  margin-bottom: 0.25rem;
+  padding-top: 1rem;
+}
+.buttonsb {
+  display: inline-flex;               /* 'inline-flex' */
+  align-items: center;               /* 'items-center' */
+  justify-content: center;           /* 'justify-center' */
+  white-space: nowrap;               /* 'whitespace-nowrap' */
+  font-size: 0.875rem;               /* 'text-sm' → 14px */
+  font-weight: 500;                  /* 'font-medium' */
+  position: relative;                /* 'relative' */
+  border-radius: 9999px;             /* 'rounded-full' */
+  width: 2.5rem;                     /* 'size-10' → 10 * 0.25rem = 2.5rem (40px) */
+  height: 2.5rem;                    /* same as width for square shape */
+  padding: 0;                        /* 'p-0' */
+  background-color: var(--color-background); /* 'ring-offset-background' */
+  transition: background-color 0.2s, color 0.2s;
+
+}
+.options {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: end
+}
+#volume {
+    width: 100px;
+    accent-color: var(--cor-escura);
+}
+
+.volume-control {
+  position: relative;
+  display: inline-block;
+}
+
+.volume-icon {
+  font-size: 24px;
+  cursor: pointer;
+  padding: 5px;
+}
+
+/* Slider hidden by default */
+.volume-slider {
+  position: absolute;
+  bottom: 120%;          /* place it above the icon */
+  left: 50%;
+  transform: translateX(-50%) rotate(-90deg); /* rotate to vertical */
+  transform-origin: bottom center;
+  
+  width: 100px;          /* length of the slider */
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+/* Show slider on hover */
+.volume-control:hover .volume-slider {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+main {
+    grid-area: main;
+    grid-row-start: 2;
+    grid-column-start: 2;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+section {
+    max-width: 80%;
+    margin-bottom: 20px;
+    display: flex;
+}
+
+.flexrow {
+  gap: 20px;
+  justify-content: space-around;
+
+}
+
+figcaption {
+    align-self: left;
+    margin-bottom: 20px;
+}
+
+.dimga{
+    background-color: aliceblue;
+    border-radius: 20px;
+    min-width: 500px;
+    max-height: 250px;
+    aspect-ratio: 4/3
+}
+
+.dimgb{
+	background-color: aliceblue;
+	border-radius: 20px;
+	max-width: 60%;
+	max-height: 60%;
+	padding: 60px;
+}
+
+.dimgc{
+	background-color: aliceblue;
+	border-radius: 20px;
+	max-width: 50%;
+	max-height: 50%;
+	padding: 40px;
+	margin: 10px 10px;
+}
+
+.card {
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+  color: var(--cor-branca);
+}
+
+.card img {
+  width: 100%;
+  border-radius: 10px;
+}
+.card-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--cor-escura);
+  border-radius: 10px;
+}
+.card:hover {
+  background-color: var(--cor-escura);
+  transition: 0.5s ease;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+  cursor: pointer;
+}
+
+@media (max-width: 480px) {
+  .grid-container {
+    grid-template-columns: 1fr;
+  }
+  #sbar {
+    flex-direction: column;
+    padding: 10px;
+  }
+  nav ul {
+    display: none;
+  }
+}
+@media (min-width: 480px) and (max-width: 768px) {
+  /* Tablet layout adjustments */
+  .grid-container {
+    grid-template-columns: repeat(4, 1fr); /* e.g. */
+  }
+  #sbar {
+    flex-direction: row; /* undo column stack */
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *:not(.no-animation) {
+    transition: none !important;
+  }
+}
+/*
+
+#sbar {
+  grid-area: footer;
+  grid-row-start: 3;
+  grid-column-start: 2;
+  grid-row: auto;
+  background-color:var(--cor-primaria);
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  max-height: 60px;
+  bottom: 0;
+  left:50%;
+  transform: translateX(-50%);
+  flex-wrap: wrap;
+  width:90%;
+  max-width: 900px;
+  padding: 10px 20px;
+  margin-top: 10px;
+  border-width: 2px 0;
+  border-bottom: none;
+  border-radius: 10px 10px 0 0;
+  z-index: 1000;
+}
+
+footer {
+ display: none;
+}
+
+.footer-bar {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 900px;
+  padding: 10px 20px;
+  margin-top: 10px;
+  background-color: var(--cor-primaria);
+  border-width: 2px 0;
+  border-bottom: none;
+  border-radius: 10px 10px 0 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  max-height: 60px;s
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(7 1fr);
+}
+*/
