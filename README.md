@@ -16,7 +16,4 @@
 ### Créditos
 - Luca Morelatto Mattedi
 - Rafael Parise Rêgo
-- Kaiky Augusto Bizon
-- Lucas Faria Processo
 - Heitor Bueno Sarkis
-- Miguel Enrico da Silva
