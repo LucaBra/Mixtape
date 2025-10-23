@@ -28,7 +28,7 @@ body{
 
 #topbar {
     grid-area: header;
-    grid-column: span 2;
+    grid-column: span 3;
     align-items: center;
     justify-content: center;
 }
@@ -60,7 +60,10 @@ nav {
   border-left: 4px solid var(--cor-primaria);
   border-top: 4px solid var(--cor-primaria);
   border-bottom: 4px solid var(--cor-primaria);
-  border-radius: 5px 0 0 5px;   
+  border-radius: 5px 0 0 5px;
+  padding-top: 20px;
+  display: flex;
+  justify-content: center;
 }
 
 nav ul{
@@ -70,6 +73,7 @@ nav ul{
     flex-direction: column;
     align-items: center;
     flex-wrap: wrap;
+    padding-left: 15px;
 
 }
 nav ul li {
