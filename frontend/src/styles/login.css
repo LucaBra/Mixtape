@@ -59,9 +59,9 @@ body {
   margin-bottom: 0.5rem;
 }
 
-.logo p {
+.logo h2 {
   color: var(--cor-branca);
-  font-size: 0.9rem;
+  font-size: 1.1rem;
   opacity: 0.8;
 }
 
@@ -192,6 +192,22 @@ body {
 }
 
 .alerta.show {
+  display: block;
+  animation: slideDown 0.3s ease;
+}
+
+.success {
+  background: #28a745;
+  color: white;
+  margin-top: 10px;
+  padding: 0.875rem;
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  display: none;
+}
+
+.success.show {
   display: block;
   animation: slideDown 0.3s ease;
 }
