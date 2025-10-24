@@ -26,14 +26,14 @@ body{
     padding-bottom: 20px;
 }
 
-#topbar {
+.topbar {
     grid-area: header;
     grid-column: span 3;
     align-items: center;
     justify-content: center;
 }
 
-#topbar h1 {
+.topbar h1 {
     color: var(--cor-branca);
     position: absolute;
     margin:0;
@@ -43,12 +43,20 @@ body{
     font-size: 2em;
     padding-top: 10px;
 }
-#topbar h2 {
+.topbar h2 {
     color: var(--cor-primaria);
     top: 0;
     margin-left: 20px;
     font-size: 1.5em;
     padding-top: 10px;
+}
+
+.topbar button {
+  position: absolute;
+  margin:0;
+  top:3%;
+  right: 0.8%;
+  padding-top: 10px;
 }
 
 nav {
@@ -91,6 +99,24 @@ nav ul li:hover {
     color: var(--cor-escura);
     font-size: 12px;
     transition: content 0.5s ease;
+}
+
+.upload {
+  background-color: var(--cor-primaria);
+  border-radius: 20px;
+  border: none;
+  color: white;
+  padding: 15px 30px;
+  text-align: center;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+}
+
+.upload:hover {
+  background-color: var(--cor-escura);
+  transform: scale(1.05);
 }
 
 footer{

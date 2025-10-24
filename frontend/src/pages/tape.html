@@ -7,13 +7,14 @@
     <link rel="stylesheet" href="../styles/tape.css">    
 </head>
 <body>
-    <div id=topbar>
+    <div class="topbar">
         <h2><a href="MIX.html">MIX</a></h2>
         <h1 class="center">TAPE</h1>
+        <button id="uploadBtn" class="upload">Upload</button>
     </div>
     <nav>
         <ul>
-            <li>Profile</li>
+            <li id="profileBtn">Profile</li>
             <li><img src="../components/svg/Search.svg"></li>
             <li><img src="../components/svg/Library.svg"></li>
             <li><img src="../components/svg/Pin.svg"></li>
@@ -82,60 +83,61 @@
         </figure>
     </main>
     <footer>
-    <div class="footer-bar">
-        <div class="albumview">
-            <!--AlbumView-->
-            <div class="cover">
-                <img class="coverimg" alt="">
-            </div>
-            <div class="nameby">
-                <div>
-                    <a href="">Title</a>
+        <div class="footer-bar">
+            <div class="albumview">
+                <!--AlbumView-->
+                <div class="cover">
+                    <img class="coverimg" alt="">
                 </div>
-                <a href="">Artist</a> 
+                <div class="nameby">
+                    <div>
+                        <a href="">Title</a>
+                    </div>
+                    <a href="">Artist</a> 
+                </div>
+            </div>
+            <div class="butbar">
+                <div id="timenbar">
+                    <small style="text-align: right;">00:00</small>
+                    <span id="playbar">
+                        <span id="borderpb"></span>
+                        <span id="pulley"></span>
+                    </span>
+                    <small style="text-align: left;">00:00</small>
+                    <!--PlayBar-->
+                </div>
+                <div id="buttons">
+                    <!--Buttons-->
+                    <button class="buttonsb">
+                        <img src="../components/svg/Tape.svg" alt="">
+                    </button>
+                    <button class="buttonsb">
+                        <img src="../components/svg/Loop.svg" alt="">
+                    </button>
+                    <button class="buttonsb">
+                        <img src="../components/svg/Back.svg" alt="">
+                    </button>
+                    <button class="buttonsb">
+                        <img src="../components/svg/Play.svg" alt="">
+                    </button>
+                    <button class="buttonsb">
+                        <img src="../components/svg/Forward.svg" alt="">
+                    </button>
+                    <button class="buttonsb">
+                        <img src="../components/svg/Shuffle.svg" alt="">
+                    </button>
+                </div>
+            </div>
+            <div class="options">
+                <div class="volume-control">
+                    <!--Volume&Options-->
+                    <span class="volume-icon">🔊</span>
+                    <input type="range" min="0" max="100" value="50" id="volume">
+                </div>
+                <img src="../components/svg/Menu.svg" alt="">
             </div>
         </div>
-        <div class="butbar">
-            <div id="timenbar">
-                <small style="text-align: right;">00:00</small>
-                <span id="playbar">
-                    <span id="borderpb"></span>
-                    <span id="pulley"></span>
-                </span>
-                <small style="text-align: left;">00:00</small>
-                <!--PlayBar-->
-            </div>
-            <div id="buttons">
-                <!--Buttons-->
-                <button class="buttonsb">
-                    <img src="../components/svg/Tape.svg" alt="">
-                </button>
-                <button class="buttonsb">
-                    <img src="../components/svg/Loop.svg" alt="">
-                </button>
-                <button class="buttonsb">
-                    <img src="../components/svg/Back.svg" alt="">
-                </button>
-                <button class="buttonsb">
-                    <img src="../components/svg/Play.svg" alt="">
-                </button>
-                <button class="buttonsb">
-                    <img src="../components/svg/Forward.svg" alt="">
-                </button>
-                <button class="buttonsb">
-                    <img src="../components/svg/Shuffle.svg" alt="">
-                </button>
-            </div>
-        </div>
-        <div class="options">
-            <div class="volume-control">
-                <!--Volume&Options-->
-                <span class="volume-icon">🔊</span>
-                <input type="range" min="0" max="100" value="50" id="volume">
-            </div>
-            <img src="../components/svg/Menu.svg" alt="">
-        </div>
-    </div>
-</footer>
+    </footer>
+    <script src="../scripts/tape.js"></script>
 </body>
 </html>

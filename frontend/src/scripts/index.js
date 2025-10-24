@@ -1,9 +1,8 @@
-// Update your index.js - keep existing code but add these
 document.addEventListener('DOMContentLoaded', function() {
   const mobilePopup = document.getElementById('mobile-popup');
   const mobilePopupCloseBtn = document.querySelector('.mobile-popup-close');
   
-  // Mobile button click handler
+
   const mobileButton = document.getElementById('btn');
   mobileButton.addEventListener('click', function() {
     if (window.innerWidth < 768) {
@@ -16,7 +15,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
   
-  // Close popup when clicking close button
   if (mobilePopupCloseBtn) {
     mobilePopupCloseBtn.addEventListener('click', function() {
       mobilePopup.classList.remove('show');
@@ -28,7 +26,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
   
-  // Close popup when clicking outside
   mobilePopup.addEventListener('click', function(event) {
     if (event.target === mobilePopup) {
       mobilePopup.classList.remove('show');
