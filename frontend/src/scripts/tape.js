@@ -1,6 +1,7 @@
 const upload = document.getElementById("uploadBtn")
 const profile = document.getElementById("profileBtn")
 
+
 upload.addEventListener("click", function(e) {
     const token = localStorage.getItem("token");
     const nomeUsuario = localStorage.getItem("nomeUsuario");
@@ -19,4 +20,11 @@ profile.addEventListener("click", function(e) {
         return;
     }
     window.location.href = "../pages/user.html";
+});
+
+
+document.querySelectorAll(".card").forEach(card => {
+  card.addEventListener("click", () => {
+    window.location.href = "../pages/album.html";
+  });
 });
