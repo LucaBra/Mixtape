@@ -127,24 +127,6 @@ main {
     gap: 30px;
 }
 
-.upload {
-    background-color: var(--cor-primaria);
-    border-radius: 10px;
-    border: none;
-    color: white;
-    padding: 15px 15px;
-    text-align: center;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-weight: 600;
-}
-
-.upload:hover {
-    background-color: var(--cor-escura);
-    transform: scale(1.05);
-}
-
 footer{
     border-top: 1px solid currentColor;   
     height: var(--player-height);   

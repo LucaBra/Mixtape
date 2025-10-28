@@ -1,6 +1,3 @@
-// artist.js - Script for dynamic artist page content
-
-// Placeholder database - Replace with actual API calls in production
 const artistDatabase = {
     artists: {
         'artist-1': {
