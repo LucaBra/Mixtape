@@ -35,7 +35,7 @@ body{
 
 .topbar {
     grid-area: header;
-    grid-column: span 2;
+    grid-column: span 2;   /*era tres*/
     align-items: center;
     justify-content: center;
 }
@@ -67,7 +67,7 @@ body{
   position: absolute;
   margin:0;
   top:3%;
-  right: 0.8%;
+  right: 0.2%;  /*era 0.8%*/
   padding-top: 10px;
 }
 
@@ -118,6 +118,8 @@ main {
     padding: 20px;
     display: flex;
     flex-direction: column;
+    max-width: 1200px;
+    margin: 0 auto;
     gap: 30px;
 }
 
@@ -299,20 +301,21 @@ footer{
   padding: 0;                        
   background-color: transparent;
   border: none;
-  color: var(--cor-branca);
   cursor: pointer;
   transition: background-color 0.2s, color 0.2s;
+  /*color: var(--cor-branca);*/
 }
 
 .buttonsb:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: var(--cor-escura);
 }
 
 .options {
   display: flex;
   align-items: center;
   width: 100%;
-  justify-content: end
+  justify-content: end;
+  gap: 10px;
 }
 #volume {
     width: 100px;
@@ -322,12 +325,13 @@ footer{
 .volume-control {
   position: relative;
   display: inline-block;
+  align-items: center;
+  gap: 10px;
 }
 
 .volume-icon {
   font-size: 24px;
   cursor: pointer;
-  padding: 5px;
 }
 /*
 .volume-slider {

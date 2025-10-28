@@ -10,18 +10,17 @@
     <div class="topbar">
         <h2><a href="MIX.html">MIX</a></h2>
         <h1 class="center">TAPE</h1>
-        <button class="upload">Upload</button>
+        <button id="uploadBtn" class="upload">Upload</button>
     </div>
-    
     <nav>
         <ul>
-            <li>Profile</li>
-            <li>🔍</li>
-            <li>📚</li>
-            <li>📌</li>
+            <li id="profileBtn">Profile</li>
+            <li><img src="../components/svg/Search.svg"></li>
+            <li><img src="../components/svg/Library.svg"></li>
+            <li><img src="../components/svg/Pin.svg"></li>
+            <!-- De alguma forma o pin adiciona mais opcoes-->
         </ul>
     </nav>
-    
     <main>
         <div class="album-header">
             <div class="album-cover"></div>
@@ -42,7 +41,9 @@
 
         <div class="album-controls">
             <button class="play-button">▶</button>
-            <button class="control-btn">🔀</button>
+            <button class="control-btn">
+                <img src="../components/svg/Shuffle.svg">
+            </button>
             <button class="control-btn">♡</button>
             <button class="control-btn">⋯</button>
         </div>
@@ -167,12 +168,12 @@
             </div>
         </div>
     </main>
-    
     <footer>
         <div class="footer-bar">
             <div class="albumview">
+                <!--AlbumView-->
                 <div class="cover">
-                    <div class="coverimg"></div>
+                    <img class="coverimg" alt="">
                 </div>
                 <div class="nameby">
                     <div>
@@ -184,28 +185,45 @@
             <div class="butbar">
                 <div id="timenbar">
                     <small style="text-align: right;">00:00</small>
-                    <span id="playbar"></span>
+                    <span id="playbar">
+                        <span id="borderpb"></span>
+                        <span id="pulley"></span>
+                    </span>
                     <small style="text-align: left;">00:00</small>
+                    <!--PlayBar-->
                 </div>
                 <div id="buttons">
-                    <button class="buttonsb">🎵</button>
-                    <button class="buttonsb">🔁</button>
-                    <button class="buttonsb">⏮</button>
-                    <button class="buttonsb">▶</button>
-                    <button class="buttonsb">⏭</button>
-                    <button class="buttonsb">🔀</button>
+                    <!--Buttons-->
+                    <button class="buttonsb">
+                        <img src="../components/svg/Tape.svg" alt="">
+                    </button>
+                    <button class="buttonsb">
+                        <img src="../components/svg/Loop.svg" alt="">
+                    </button>
+                    <button class="buttonsb">
+                        <img src="../components/svg/Back.svg" alt="">
+                    </button>
+                    <button class="buttonsb">
+                        <img src="../components/svg/Play.svg" alt="">
+                    </button>
+                    <button class="buttonsb">
+                        <img src="../components/svg/Forward.svg" alt="">
+                    </button>
+                    <button class="buttonsb">
+                        <img src="../components/svg/Shuffle.svg" alt="">
+                    </button>
                 </div>
             </div>
             <div class="options">
                 <div class="volume-control">
+                    <!--Volume&Options-->
                     <span class="volume-icon">🔊</span>
                     <input type="range" min="0" max="100" value="50" id="volume">
                 </div>
-                <span>☰</span>
+                <img style="cursor:pointer;" src="../components/svg/Menu.svg" alt="">
             </div>
         </div>
     </footer>
-
     <script src="../scripts/album.js"></script>
 </body>
 </html>
