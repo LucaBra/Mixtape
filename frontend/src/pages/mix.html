@@ -1,141 +1,81 @@
 <!DOCTYPE html>
-<html lang="br">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TAPE - MIXTAPE</title>
-    <link rel="stylesheet" href="mix.css">    
+    <title>Music Mix Studio</title>
+    <link rel="stylesheet" href="../styles/mix.css">
 </head>
 <body>
-    <div id="topbar">
-        <h2><a href="tape.html">TAPE</a></h2>
-        <h1 class="center">MIX</h1>
-    </div>
-    <nav>
-        <ul>
-            <li>Profile</li>
-            <li><img src="SVG/Search.svg"></li>
-            <li><img src="SVG/Library.svg"></li>
-            <li><img src="SVG/Pin.svg"></li>
-            <!-- De alguma forma o pin adiciona mais opcoes-->
-        </ul>
-    </nav>
-    <main>
-        <!--Content-->
-        <figure>
-	        <figcaption>Destaques</figcaption>
-            <section style="gap:50px">
-                <div class="dimga"><img src="" alt=""></div>
-                <div class="dimga"><img src="" alt=""></div>
-            </section>
-        </figure>
-        <figure>
-            <figcaption>Recomendados</figcaption>
-            <section class="flexrow">
-                <div class="card">
-                    <div class="dimgb"></div>
-                    <p>Lorem Ipsum</p>
-                    <small>Artist Name</small>
-                </div>
-                <div class="card">
-                    <div class="dimgb"></div>
-                    <p>Lorem Ipsum</p>
-                    <small>Artist Name</small>
-                </div>
-                <div class="card">
-                    <div class="dimgb"></div>
-                    <p>Lorem Ipsum</p>
-                    <small>Artist Name</small>
-                </div>
-                <div class="card">
-                    <div class="dimgb"></div>
-                    <p>Lorem Ipsum</p>
-                    <small>Artist Name</small>
-                </div>
-                <div class="card">
-                    <div class="dimgb"></div>
-                    <p>Lorem Ipsum</p>
-                    <small>Artist Name</small>
-                </div>
-                <div class="card">
-                    <div class="dimgb"></div>
-                    <p>Lorem Ipsum</p>
-                    <small>Artist Name</small>
-                </div>
-                <div class="card">
-                    <div class="dimgb"></div>
-                    <p>Lorem Ipsum</p>
-                    <small>Artist Name</small>
-                </div>
-            </section>
-        </figure>
-        <figure>
-            <figcaption>Mixes</figcaption>
-            <section class="">
-                <div class="dimgc"></div>
-                <div class="dimgc"></div>
-            </section>
-            <section class="">
-                <div class="dimgc"></div>
-                <div class="dimgc"></div>
-            </section>
-        </figure>
-    </main>
-    <footer>
-    <div class="footer-bar">
-        <div class="albumview">
-            <!--AlbumView-->
-            <div class="cover">
-                <img class="coverimg" alt="">
-            </div>
-            <div class="nameby">
-                <div>
-                    <a href="">Title</a>
-                </div>
-                <a href="">Artist</a> 
-            </div>
+    <div id="mainView">
+        <div class="sidebar">
+            <div class="user-avatar"><div class="user-avatar-inner"></div></div>
+            <div class="workspaces" id="workspaceList"></div>
+            <button class="add-workspace-btn" onclick="addWorkspace()">+</button>
         </div>
-        <div class="butbar">
-            <div id="timenbar">
-                <small style="text-align: right;">00:00</small>
-                <span id="playbar">
-                    <span id="borderpb"></span>
-                    <span id="pulley"></span>
-                </span>
-                <small style="text-align: left;">00:00</small>
-                <!--PlayBar-->
+        <div class="main-content">
+            <div class="header">
+                <h1>MIX</h1>
+                <span class="tape-text" onclick="window.location.href='tape.html'">TAPE</span>
             </div>
-            <div id="buttons">
-                <!--Buttons-->
-                <button class="buttonsb">
-                    <img src="SVG/Tape.svg" alt="">
-                </button>
-                <button class="buttonsb">
-                    <img src="SVG/Loop.svg" alt="">
-                </button>
-                <button class="buttonsb">
-                    <img src="SVG/Back.svg" alt="">
-                </button>
-                <button class="buttonsb">
-                    <img src="SVG/Play.svg" alt="">
-                </button>
-                <button class="buttonsb">
-                    <img src="SVG/Forward.svg" alt="">
-                </button>
-                <button class="buttonsb">
-                    <img src="SVG/Shuffle2.svg" alt="">
-                </button>
+            <div class="track-area"><div class="track-grid" id="trackGrid"></div></div>
+            <div class="bottom-controls">
+                <div style="position: relative;">
+                    <button class="control-btn" onclick="toggleColorPicker()">🎨</button>
+                    <div id="colorPicker" class="popup color-picker hidden"></div>
+                </div>
+                <button class="control-btn" onclick="toggleMixer()">⌃</button>
+                <button class="control-btn" onclick="switchView('minimal')">♪</button>
             </div>
-        </div>
-        <div class="options">
-            <div class="volume-control">
-                <!--Volume&Options-->
-                <span class="volume-icon">🔊</span>
-                <input type="range" min="0" max="100" value="50" id="volume">
-            </div>
-            <img src="SVG/Menu.svg" alt="">
         </div>
     </div>
-</footer>
+    <div id="minimalView" class="hidden">
+        <div class="minimal-display"><div class="album-art"></div></div>
+        <div class="minimal-controls">
+            <div class="playback-controls">
+                <div class="album-thumb"></div>
+                <div class="track-info">
+                    <div class="track-title">Lorem Ipsum</div>
+                    <div class="track-artist">dolor sit amet</div>
+                </div>
+                <button class="play-btn" id="playBtn" onclick="togglePlay()">▶</button>
+                <div class="progress-bar"><div class="progress-fill"></div></div>
+                <div class="time-display">00:00 / 00:00</div>
+                <div style="position: relative;">
+                    <button class="minimal-icon-btn" onclick="toggleEffects()">⚡</button>
+                    <div id="effectsPopup" class="popup effects-popup hidden"></div>
+                </div>
+                <div style="position: relative;">
+                    <button class="minimal-icon-btn" onclick="toggleSounds()">📡</button>
+                    <div id="soundsPopup" class="popup sounds-popup hidden"></div>
+                </div>
+                <div style="position: relative;">
+                    <button class="minimal-icon-btn" onclick="toggleVolume()">🔊</button>
+                    <div id="volumePopup" class="popup volume-popup hidden">
+                        <div class="popup-title">Vol</div>
+                        <input type="range" class="volume-slider" min="0" max="100" value="70">
+                    </div>
+                </div>
+                <button class="minimal-icon-btn" onclick="switchView('main')">⊟</button>
+            </div>
+        </div>
+    </div>
+    <div id="mixerOverlay" class="mixer-overlay hidden" onclick="closeMixerOnOverlay(event)">
+        <div class="mixer-panel" onclick="event.stopPropagation()">
+            <div class="mixer-header">
+                <div class="mixer-header-left">
+                    <div class="mixer-title">Mixer</div>
+                    <div style="position: relative;">
+                        <button class="mixer-btn" onclick="toggleScalePicker()">Scale: <span id="currentScaleDisplay">C#</span></button>
+                        <div id="scalePicker" class="scale-picker hidden"></div>
+                    </div>
+                    <button class="mixer-btn">Equalizer</button>
+                </div>
+                <button class="mixer-close" onclick="toggleMixer()">×</button>
+            </div>
+            <div class="mixer-content"><div class="mixer-channels" id="mixerChannels"></div></div>
+        </div>
+    </div>
+    <script src="../scripts/mix.js"></script>
 </body>
 </html>
