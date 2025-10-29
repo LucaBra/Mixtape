@@ -7,17 +7,18 @@
     <link rel="stylesheet" href="../styles/album.css"> 
 </head>
 <body>
-    <div class="topbar">
-        <h2><a href="MIX.html">MIX</a></h2>
-        <h1 class="center">TAPE</h1>
+     <div class="topbar">
+        <h2><a href="mix.html">MIX</a></h2>
+        <h1 class="center"><a href="tape.html">TAPE</a></h1>   
     </div>
     <nav>
         <ul>
-            <li id="profileBtn">Profile</li>
+            <li id="profileBtn"><img src="../components/svg/Profile.svg"></img></li>
             <li><img src="../components/svg/Search.svg"></li>
             <li><img src="../components/svg/Library.svg"></li>
             <li><img src="../components/svg/Upload.svg" id="uploadBtn"></li>
             <li><img src="../components/svg/Pin.svg"></li>
+            <script src="../scripts/navbar.js"></script>
             <!-- De alguma forma o pin adiciona mais opcoes-->
         </ul>
     </nav>
@@ -183,16 +184,16 @@
                 </div>
             </div>
             <div class="butbar">
-                <div id="timenbar">
+                <div class="timenbar">
                     <small style="text-align: right;">00:00</small>
-                    <span id="playbar">
+                    <span class="playbar">
                         <span id="borderpb"></span>
                         <span id="pulley"></span>
                     </span>
                     <small style="text-align: left;">00:00</small>
                     <!--PlayBar-->
                 </div>
-                <div id="buttons">
+                <div class="buttons">
                     <!--Buttons-->
                     <button class="buttonsb">
                         <img src="../components/svg/Tape.svg" alt="">
@@ -203,8 +204,8 @@
                     <button class="buttonsb">
                         <img src="../components/svg/Back.svg" alt="">
                     </button>
-                    <button class="buttonsb">
-                        <img src="../components/svg/Play.svg" alt="">
+                    <button class="buttonsb" onclick="togglePlay()">
+                        <img id="playBtn" src="../components/svg/Play.svg" alt="">
                     </button>
                     <button class="buttonsb">
                         <img src="../components/svg/Forward.svg" alt="">
@@ -212,13 +213,14 @@
                     <button class="buttonsb">
                         <img src="../components/svg/Shuffle.svg" alt="">
                     </button>
+                    <script src="../scripts/sbar.js"></script>
                 </div>
             </div>
             <div class="options">
                 <div class="volume-control">
                     <!--Volume&Options-->
                     <span class="volume-icon">🔊</span>
-                    <input type="range" min="0" max="100" value="50" id="volume">
+                    <input type="range" min="0" max="100" value="50" class="volume">
                 </div>
                 <img style="cursor:pointer;" src="../components/svg/Menu.svg" alt="">
             </div>

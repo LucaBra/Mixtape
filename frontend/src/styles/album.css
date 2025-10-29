@@ -61,6 +61,11 @@ body{
     padding-top: 10px;
 }
 
+.topbar h1 a {
+    color: var(--cor-branca);
+    text-decoration: none;
+}
+
 .topbar h2 a {
     color: var(--cor-primaria);
     text-decoration: none;
@@ -127,66 +132,69 @@ main {
     gap: 30px;
 }
 
+
 footer{
-    border-top: 1px solid currentColor;   
-    height: var(--player-height);   
-    width: 100%;                     
-    display: flex;                        
-    align-items: center;                  
-    position: fixed;                       
-    bottom: 0;                          
-    left: 0;                       
-    right: 0;                  
-    z-index: 40;                           
-    background-color: var(--color-background);
+  border-top: 1px solid currentColor;   
+  height: var(--player-height);   
+  width: 100%;                     
+  display: flex;                        
+  align-items: center;                  
+  position: fixed;                       
+  bottom: 0;                          
+  left: 0;                       
+  right: 0;                  
+  z-index: 40;                           
+  background-color: var(--color-background);
 }
 
 .footer-bar {
-    background-color: var(--cor-primaria);
-    width: 100%;
-    height: 100%;                   
-    display: grid;                
-    gap: 0.5rem;                 
-    padding-left: 1rem;               
-    padding-right: 1rem;
-    grid-template-columns: minmax(250px,1fr) minmax(0px,1fr) minmax(0px,1fr) minmax(250px,1fr);
+  background-color: var(--cor-primaria);
+  width: 100%;
+  height: 100%;                   
+  display: grid;                
+  gap: 0.5rem;                 
+  padding-left: 1rem;               
+  padding-right: 1rem;
+  grid-template-columns: minmax(250px,1fr) 
+  minmax(0px,1fr) minmax(0px,1fr) 
+  minmax(250px,1fr);
 }
 
 .albumview {
-    display: flex;               
-    align-items: center;        
-    gap: 0.5rem;                
-    width: 100%;
+  display: flex;               
+  align-items: center;        
+  gap: 0.5rem;                
+  width: 100%;
 }
 
 .cover {
-    position: relative;
-    min-width: 70px;
-    max-width: 70px;
-    aspect-ratio: 1 / 1;
-    background-size: cover;
-    background-position: center;
-    border-radius: 0.25rem;
-    overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+  min-width: 70px;
+  max-width: 70px;
+  aspect-ratio: 1 / 1;
+  background-size: cover;
+  background-position: center;
+  border-radius: 0.25rem;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .coverimg {
-    aspect-ratio: 1 / 1;              
-    object-fit: cover;                
-    width: 100%;                       
-    height: 100%;                     
-    cursor: pointer;
-    background-color: var(--color-skeleton);
-    color: transparent
+  aspect-ratio: 1 / 1;              
+  object-fit: cover;                
+  width: 100%;                       
+  height: 100%;                     
+  cursor: pointer;                   
+  background-color: var(--color-skeleton);
+  color: transparent
 }
 
 .nameby {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 100%;
-    overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  overflow: hidden;
 }
 
 .nameby a {
@@ -194,41 +202,39 @@ footer{
     text-decoration: none;
 }
 
-
 .nameby a:hover {
     text-decoration: underline;
 }
 
 .butbar {
-    grid-column: span 2;
-    display: flex; 
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    gap: 0.25rem;
+  grid-column: span 2;
+  display: flex; 
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  gap: 0.25rem;
 }
 
-#timenbar {
-    display: flex;           
-    width: 100%;             
-    justify-content: center;
-    align-items: center; 
-    gap: 0.5rem;
-}
+.timenbar {
+  display: flex;           
+  width: 100%;             
+  justify-content: center;
+  align-items: center; 
+  gap: 0.5rem;
 
-#playbar {
-    position: relative;
-    height: 0.25rem;
-    width: 100%;
-    flex-grow: 1;
-    overflow: hidden;
-    border-radius: 9999px;
-    user-select: none;
-    background-color: var(--cor-escura);
 }
-
+.playbar {
+  position: relative;
+  height: 0.25rem;
+  width: 100%;
+  flex-grow: 1;
+  overflow: hidden;
+  border-radius: 9999px;
+  user-select: none;
+  background-color: var(--cor-escura);
+}
 #borderpb {
   position: relative;        
   height: 0.75rem;         
@@ -263,61 +269,86 @@ footer{
   opacity: 0.5;
 }
 
-#buttons {
-    display: flex;              
-    width: 100%;                 
-    gap: 1.5rem;                
-    justify-content: center;    
-    align-items: center;        
-    margin-bottom: 0.25rem;
-    padding-top: 0.5rem;
+.buttons {
+  display: flex;                              
+  gap: 0.75rem;          
+  justify-content: center;      
+  align-items: center;
+  width: 100%;                       
+  margin-bottom: 0.25rem;
+  padding-top: 0.5rem;
+  overflow: hidden;
+  max-width: 100%; 
+  box-sizing: border-box;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .buttonsb {
-    display: inline-flex;              
-    align-items: center;               
-    justify-content: center;           
-    white-space: nowrap;               
-    font-size: 0.875rem;               
-    font-weight: 500;                  
-    position: relative;                
-    border-radius: 9999px;             
-    width: 2.5rem;                     
-    height: 2.5rem;                    
-    padding: 0;                        
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.2s, color 0.2s;
+  display: inline-flex;              
+  align-items: center;               
+  justify-content: center;           
+  white-space: nowrap;               
+  font-size: 0.9rem;  /*era 1.2 */              
+  font-weight: 500;                  
+  position: relative;                
+  border-radius: 9999px;             
+  width: 3.5rem;                     
+  height: 3.5rem;                    
+  padding: 0;                        
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+  /*color: var(--cor-branca);*/
 }
 
 .buttonsb:hover {
     background-color: var(--cor-escura);
+    transition: fill 0.3s ease;
 }
 
 .options {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    justify-content: end;
-    gap: 10px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: end;
+  gap: 10px;
 }
 
-#volume {
+.volume {
+    display: none;
     width: 100px;
     accent-color: var(--cor-escura);
 }
 
+.popup {
+  position: absolute;
+  bottom: 48px;
+  background: #4b5563;
+  border-radius: 8px;
+  padding: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  z-index: 100;
+}
 .volume-control {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
+  position: relative;
+  display: inline-block;
+  align-items: center;
+  gap: 10px;
 }
 
+.volume-control:hover .volume {
+    display: block;
+    animation: fadeIn 0.5s ease;
+}
 .volume-icon {
-    font-size: 24px;
-    cursor: pointer;
+  font-size: 24px;
+  cursor: pointer;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 /* Album Page Specific Styles */

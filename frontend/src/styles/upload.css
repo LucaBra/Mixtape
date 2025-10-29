@@ -53,6 +53,11 @@ body{
     padding-top: 10px;
 }
 
+.topbar h1 a {
+    color: var(--cor-branca);
+    text-decoration: none;
+}
+
 .topbar h2 {
     color: var(--cor-primaria);
     top: 0;
