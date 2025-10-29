@@ -1,6 +1,6 @@
 const upload = document.getElementById("uploadBtn")
 const profile = document.getElementById("profileBtn")
-
+const library = document.getElementById("libraryBtn")
 
 upload.addEventListener("click", function(e) {
     const token = localStorage.getItem("token");
@@ -20,6 +20,16 @@ profile.addEventListener("click", function(e) {
         return;
     }
     window.location.href = "../pages/user.html";
+});
+
+library.addEventListener("click", function(e) {
+    const token = localStorage.getItem("token");
+    const nomeUsuario = localStorage.getItem("nomeUsuario");
+    if (!token) {
+        window.location.href = "../pages/login.html";
+        return;
+    }
+    window.location.href = "../pages/album.html";
 });
 
 function updateProfileButton() {

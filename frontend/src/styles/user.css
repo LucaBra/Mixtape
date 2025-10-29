@@ -154,7 +154,7 @@ main {
 .verified-badge {
     color: var(--cor-primaria);
     font-size: 0.9em;
-    display: flex;
+    display: none;   /*flex*/
     align-items: center;
     gap: 5px;
 }
@@ -227,7 +227,7 @@ main {
 .track-item {
     background-color: rgba(76, 155, 219, 0.1);
     border: 2px solid transparent;
-    padding: 15px;
+    padding: 10px;
     border-radius: 8px;
     display: grid;
     grid-template-columns: 50px 80px 1fr auto auto;
@@ -249,10 +249,11 @@ main {
 }
 
 .track-cover {
-    width: 60px;
-    height: 60px;
-    background-color: var(--cor-escura);
+    width: 45px;
+    height: 45px;
+    background-color: transparent;
     border: 2px solid var(--cor-primaria);
+    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -336,13 +337,13 @@ main {
 .album-cover {
     width: 100%;
     aspect-ratio: 1;
-    background-color: var(--cor-escura);
-    border: 2px solid var(--cor-primaria);
+    background-color: var(--cor-branca);
+    /*border: 2px solid var(--cor-primaria);*/
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 1em;
-    border-radius: 5px;
+    border-radius: 10px;
 }
 
 .album-info {
