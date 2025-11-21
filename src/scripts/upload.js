@@ -43,14 +43,68 @@ songInput.addEventListener('change', (e) => {
         songUpload.classList.add('has-music');
     }
 });
-function handleUpload() {
+async function handleUpload() {
     const trackTitle = document.getElementById('trackTitle').value;
     const artists = document.getElementById('artists').value;
+    const genre = document.getElementById('genre').value;
+    const tags = document.getElementById('tags').value;
+    const description = document.getElementById('description').value;
+    const privacy = document.querySelector('input[name="privacy"]:checked').value;
+    const trackLink = document.getElementById('trackLink').value;
 
     if (!trackTitle || !artists) {
         alert('Por favor, preencha os campos obrigatórios (Título e Artista).');
         return;
     }
 
-    alert('Faixa enviada com sucesso! (Esta é uma demonstração)');
+    const songFile = songInput.files[0];
+    if (!songFile) {
+        alert('Por favor, selecione um arquivo de música.');
+        return;
+    }
+
+    const formData = new FormData();
+    formData.append('title', trackTitle);
+    formData.append('artists', artists);
+    formData.append('genre', genre);
+    formData.append('tags', tags);
+    formData.append('description', description);
+    formData.append('privacy', privacy);
+    formData.append('trackLink', trackLink);
+    formData.append('song', songFile);
+    
+    if (artworkInput.files[0]) {
+        formData.append('artwork', artworkInput.files[0]);
+    }
+
+    try {
+        const response = await fetch('http://localhost:3000/api/upload', {
+            method: 'POST',
+            body: formData
+        });
+
+        const result = await response.json();
+        
+        if (result.success) {
+            alert('Faixa enviada com sucesso!');
+            document.getElementById('trackTitle').value = '';
+            document.getElementById('artists').value = '';
+            document.getElementById('genre').value = '';
+            document.getElementById('tags').value = '';
+            document.getElementById('description').value = '';
+            document.getElementById('trackLink').value = '';
+            document.querySelector('input[name="privacy"][value="public"]').checked = true;
+            artworkPreview.src = '';
+            artworkUpload.classList.remove('has-image');
+            songUpload.classList.remove('has-music');
+            document.querySelector('.song-upload .upload-placeholder p').innerHTML = '<strong>Adicionar nova musica</strong>';
+            songInput.value = '';
+            artworkInput.value = '';
+        } else {
+            alert('Erro ao enviar faixa: ' + result.message);
+        }
+    } catch (error) {
+        console.error('Upload error:', error);
+        alert('Erro ao enviar faixa. Verifique se o servidor está rodando em localhost:3000');
+    }
 }
