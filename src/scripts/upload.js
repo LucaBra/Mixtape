@@ -24,17 +24,7 @@ songUpload.addEventListener('click', () => {
     songInput.click();
 });
 
-songInput.addEventListener('change', (e) => {
-    const file = e.target.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = (event) => {
-            songUpload.classList.add('has-music');
-        };
-        reader.readAsDataURL(file);
-    }
-});
-
+// só um eventlistner rabolas
 songInput.addEventListener('change', (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -43,6 +33,7 @@ songInput.addEventListener('change', (e) => {
         songUpload.classList.add('has-music');
     }
 });
+
 async function handleUpload() {
     const trackTitle = document.getElementById('trackTitle').value;
     const artists = document.getElementById('artists').value;
