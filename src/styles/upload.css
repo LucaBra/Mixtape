@@ -70,7 +70,7 @@ main {
     background-color: rgba(76, 155, 219, 0.1);
 }
 
-.song-upload .songupload-placeholder p {
+.song-upload .upload-placeholder p {
     font-size: 14px;
     color: var(--cor-branca);
     margin-top: 4px;
@@ -134,7 +134,7 @@ main {
     display: none;
 }
 
-.songupload-placeholder {
+.upload-placeholder {
     padding: 20px;
     display: flex;
     align-items: center;
@@ -269,7 +269,7 @@ main {
 
 .submit-button {
     background-color: var(--cor-primaria);
-    color: var(--cor-escura);
+    color: var(--cor-branca);
     border: none;
     border-radius: 8px;
     padding: 15px 40px;
