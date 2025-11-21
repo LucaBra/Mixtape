@@ -67,9 +67,9 @@ nav {
   border-top: 4px solid var(--cor-primaria);
   border-bottom: 4px solid var(--cor-primaria);
   border-radius: 5px 0 0 5px;
-  padding-top: 20px;
   position: fixed;
   right: 0;
+  top: 0;
   z-index: 999;
 }
 
