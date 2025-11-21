@@ -14,11 +14,11 @@
     </div>
     <nav>
         <ul>
-            <li id="profileBtn"><img src="../components/svg/Profile.svg"></img></li>
-            <li><img src="../components/svg/Search.svg"></li>
-            <li><img src="../components/svg/Library.svg" id="libraryBtn"></li>
-            <li><img src="../components/svg/Upload.svg" id="uploadBtn"></li>
-            <li><img src="../components/svg/Pin.svg"></li>
+            <li id="profileBtn"><a href="user.html"><img src="../components/svg/Profile.svg" alt="Perfil do usuário"></a></li>
+            <li><a href="#"><img src="../components/svg/Search.svg" alt="Buscar"></a></li>
+            <li id="libraryBtn"><a href="paginaInicial.html"><img src="../components/svg/Library.svg" alt="Sua Biblioteca"></a></li>
+            <li id="uploadBtn"><a href="upload.html"><img src="../components/svg/Upload.svg" alt="Enviar música"></a></li>
+            <li><a href="#"><img src="../components/svg/Pin.svg" alt="Fixados"></a></li>
             <script src="../scripts/navbar.js"></script>
             <!-- De alguma forma o pin adiciona mais opcoes-->
         </ul>
@@ -42,12 +42,12 @@
         </div>
 
         <div class="album-controls">
-            <button class="play-button">▶</button>
-            <button class="control-btn">
+            <button class="play-button" aria-label="Tocar álbum">▶</button>
+            <button class="control-btn" aria-label="Ordem aleatória">
                 <img src="../components/svg/Shuffle.svg">
             </button>
-            <button class="control-btn">♡</button>
-            <button class="control-btn">⋯</button>
+            <button class="control-btn" aria-label="Salvar na biblioteca">♡</button>
+            <button class="control-btn" aria-label="Mais opções">⋯</button>
         </div>
 
         <div class="tracklist">
