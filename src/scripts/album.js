@@ -124,18 +124,28 @@ class AlbumPage {
     setupEventListeners() {
         // Track play functionality
         document.querySelectorAll('.track-row').forEach(row => {
-            row.addEventListener('click', function() {
-                const trackId = this.getAttribute('data-track-id');
-                const trackTitle = this.querySelector('.track-title').textContent;
-                const trackArtist = this.querySelector('.track-artist').textContent;
+            row.addEventListener('click', () => {
+                const trackId = row.getAttribute('data-track-id');
+                const track = this.currentAlbum.tracks.find(t => t.id == trackId);
+
+                if (!track || !track.songFile) {
+                    console.error("Música não encontrada ou arquivo de áudio ausente.");
+                    return;
+                }
                 
-                console.log(`Playing track: ${trackTitle} by ${trackArtist}`);
+                console.log(`Playing track: ${track.title} by ${track.artists.join(', ')}`);
                 
                 // Update footer player
                 const titleLink = document.querySelector('.nameby div a');
                 const artistLink = document.querySelector('.nameby a:last-child');
-                if (titleLink) titleLink.textContent = trackTitle;
-                if (artistLink) artistLink.textContent = trackArtist;
+                if (titleLink) titleLink.textContent = track.title;
+                if (artistLink) artistLink.textContent = track.artists.join(', ');
+
+                // Carrega e toca a música
+                const audioPlayer = document.getElementById('audio-player');
+                audioPlayer.src = DataService.getMusicUrl(track.songFile);
+                audioPlayer.play();
+                setPlayingState(true); // Atualiza o estado global e o botão de play/pause
             });
         });
 
@@ -143,6 +153,11 @@ class AlbumPage {
         const playButton = document.querySelector('.play-button');
         if (playButton) {
             playButton.addEventListener('click', () => {
+                // Toca a primeira música do álbum
+                const firstTrackRow = document.querySelector('.track-row');
+                if (firstTrackRow) {
+                    firstTrackRow.click();
+                }
                 console.log('Playing album');
             });
         }
@@ -172,17 +187,12 @@ class AlbumPage {
         // Volume control
         const volumeControl = document.querySelector('.volume');
         if (volumeControl) {
-            volumeControl.addEventListener('input', function() {
-                console.log('Volume:', this.value);
+            const audioPlayer = document.getElementById('audio-player');
+            volumeControl.addEventListener('input', (e) => {
+                audioPlayer.volume = e.target.value / 100;
             });
         }
 
-        // Footer player buttons
-        document.querySelectorAll('.buttonsb').forEach(btn => {
-            btn.addEventListener('click', function() {
-                console.log('Player button clicked');
-            });
-        });
     }
 }
 
