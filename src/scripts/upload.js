@@ -35,6 +35,9 @@ songInput.addEventListener('change', (e) => {
 });
 
 async function handleUpload() {
+    const submitButton = document.querySelector('.submit-button');
+    const originalButtonText = submitButton.textContent;
+
     const trackTitle = document.getElementById('trackTitle').value;
     const artists = document.getElementById('artists').value;
     const genre = document.getElementById('genre').value;
@@ -69,6 +72,10 @@ async function handleUpload() {
     }
 
     try {
+        // Desabilita o botão e mostra feedback de carregamento
+        submitButton.disabled = true;
+        submitButton.textContent = 'Enviando...';
+
         const response = await fetch('http://localhost:3000/api/upload', {
             method: 'POST',
             body: formData
@@ -77,7 +84,7 @@ async function handleUpload() {
         const result = await response.json();
         
         if (result.success) {
-            alert('Faixa enviada com sucesso!');
+            alert('Faixa enviada com sucesso!'); // Idealmente, trocar por uma mensagem na tela
             document.getElementById('trackTitle').value = '';
             document.getElementById('artists').value = '';
             document.getElementById('genre').value = '';
@@ -92,10 +99,14 @@ async function handleUpload() {
             songInput.value = '';
             artworkInput.value = '';
         } else {
-            alert('Erro ao enviar faixa: ' + result.message);
+            alert('Erro ao enviar faixa: ' + result.message); // Idealmente, trocar por uma mensagem na tela
         }
     } catch (error) {
         console.error('Upload error:', error);
         alert('Erro ao enviar faixa. Verifique se o servidor está rodando em localhost:3000');
+    } finally {
+        // Reabilita o botão e restaura o texto original, independentemente do resultado
+        submitButton.disabled = false;
+        submitButton.textContent = originalButtonText;
     }
 }
