@@ -409,7 +409,7 @@ footer {
   min-width: 38px;
   text-align: center;
   font-weight: 500;
-  font-family: 'Courier New', monospace;
+  /* font-family: 'Courier New', monospace; */
 }
 
 .playbar {
@@ -444,7 +444,7 @@ footer {
   position: absolute;
   top: 50%;
   left: 0%;
-  transform: translate(-50%, -50%);
+  transform: translateY(-50%);
   width: 12px;
   height: 12px;
   background-color: var(--cor-branca);
@@ -459,6 +459,11 @@ footer {
 #pulley:active {
   cursor: grabbing;
   transform: translate(-50%, -50%) scale(1.2);
+}
+
+.playbar:hover #pulley,
+.playbar.playing #pulley {
+  opacity: 1;
 }
 
 .playbar:hover #pulley {
@@ -607,4 +612,38 @@ footer {
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(-10px); }
     to { opacity: 1; transform: translateY(0); }
+}
+
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    transform: translateX(400px);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 9999;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    max-width: 300px;
+}
+
+.notification.show {
+    transform: translateX(0);
+}
+
+.notification-success {
+    background: #1ed760;
+    color: #000;
+}
+
+.notification-error {
+    background: #e22134;
+    color: #fff;
+}
+
+.notification-info {
+    background: #2e77d0;
+    color: #fff;
 }
