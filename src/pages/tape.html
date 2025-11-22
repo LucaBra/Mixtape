@@ -15,13 +15,31 @@
     </div>
     <nav>
         <ul>
-            <li id="profileBtn"><img src="../components/svg/Profile.svg"></img></li>
-            <li><img src="../components/svg/Search.svg"></li>
-            <li><img src="../components/svg/Library.svg" id="libraryBtn"></li>
-            <li><img src="../components/svg/Upload.svg" id="uploadBtn"></li>
-            <li><img src="../components/svg/Pin.svg"></li>
-            <script src="../scripts/navbar.js"></script>
-            <!-- De alguma forma o pin adiciona mais opcoes-->
+            <li id="profileBtn" data-tooltip="Perfil">
+                <a href="user.html">
+                    <img src="../components/svg/Profile.svg" alt="Perfil">
+                </a>
+            </li>
+            <li id="searchBtn" data-tooltip="Buscar">
+                <a href="#">
+                    <img src="../components/svg/Search.svg" alt="Buscar">
+                </a>
+            </li>
+            <li id="libraryBtn" data-tooltip="Biblioteca">
+                <a href="paginaInicial.html">
+                    <img src="../components/svg/Library.svg" alt="Biblioteca">
+                </a>
+            </li>
+            <li id="uploadBtn" data-tooltip="Upload">
+                <a href="upload.html">
+                    <img src="../components/svg/Upload.svg" alt="Upload">
+                </a>
+            </li>
+            <li id="pinBtn" data-tooltip="Fixar">
+                <a href="#">
+                    <img src="../components/svg/Pin.svg" alt="Fixar">
+                </a>
+            </li>
         </ul>
     </nav>
     <main>
