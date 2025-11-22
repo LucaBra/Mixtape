@@ -1,373 +1,194 @@
-const artistDatabase = {
-    artists: {
-        'artist-1': {
-            id: 'artist-1',
-            name: 'The Midnight Collective',
-            profilePicture: '', // URL to profile picture
-            isVerified: true,
-            monthlyListeners: 2500000,
-            about: 'The Midnight Collective is an innovative music group that has been captivating audiences worldwide since 2018. Known for their unique blend of electronic and indie rock, they have released multiple chart-topping albums and have performed at major festivals around the globe. Their sound is characterized by atmospheric synths, powerful vocals, and introspective lyrics that resonate with millions of fans.',
-            
-            popularTracks: [
-                {
-                    id: 'track-1',
-                    title: 'Neon Dreams',
-                    coverImage: '',
-                    plays: 150000000,
-                    duration: '3:45',
-                    albumId: 'album-1'
-                },
-                {
-                    id: 'track-2',
-                    title: 'Lost in the Echo',
-                    coverImage: '',
-                    plays: 120000000,
-                    duration: '4:12',
-                    albumId: 'album-1'
-                },
-                {
-                    id: 'track-3',
-                    title: 'Midnight Run',
-                    coverImage: '',
-                    plays: 98000000,
-                    duration: '3:28',
-                    albumId: 'album-2'
-                },
-                {
-                    id: 'track-4',
-                    title: 'Electric Souls',
-                    coverImage: '',
-                    plays: 87000000,
-                    duration: '3:56',
-                    albumId: 'album-2'
-                },
-                {
-                    id: 'track-5',
-                    title: 'Starlight',
-                    coverImage: '',
-                    plays: 76000000,
-                    duration: '4:03',
-                    albumId: 'album-3'
-                }
-            ],
-            
-            discography: [
-                {
-                    id: 'album-1',
-                    title: 'Nocturnal Waves',
-                    coverImage: '',
-                    year: 2024,
-                    type: 'Album',
-                    trackCount: 12
-                },
-                {
-                    id: 'album-2',
-                    title: 'Electric Dreams',
-                    coverImage: '',
-                    year: 2023,
-                    type: 'Album',
-                    trackCount: 14
-                },
-                {
-                    id: 'ep-1',
-                    title: 'After Hours',
-                    coverImage: '',
-                    year: 2023,
-                    type: 'EP',
-                    trackCount: 6
-                },
-                {
-                    id: 'single-1',
-                    title: 'Neon Dreams',
-                    coverImage: '',
-                    year: 2024,
-                    type: 'Single',
-                    trackCount: 1
-                },
-                {
-                    id: 'album-3',
-                    title: 'Echoes of Tomorrow',
-                    coverImage: '',
-                    year: 2022,
-                    type: 'Album',
-                    trackCount: 11
-                }
-            ]
-        },
-        'artist-2': {
-            id: 'artist-2',
-            name: 'Luna Storm',
-            profilePicture: '',
-            isVerified: true,
-            monthlyListeners: 1800000,
-            about: 'Luna Storm burst onto the music scene in 2020 with her powerful voice and emotional songwriting. Her music blends pop, R&B, and electronic elements to create a sound that is uniquely her own.',
-            
-            popularTracks: [
-                {
-                    id: 'track-6',
-                    title: 'Thunder Heart',
-                    coverImage: '',
-                    plays: 95000000,
-                    duration: '3:32',
-                    albumId: 'album-4'
-                },
-                {
-                    id: 'track-7',
-                    title: 'Moonlight',
-                    coverImage: '',
-                    plays: 82000000,
-                    duration: '3:18',
-                    albumId: 'album-4'
-                }
-            ],
-            
-            discography: [
-                {
-                    id: 'album-4',
-                    title: 'Storm Season',
-                    coverImage: '',
-                    year: 2024,
-                    type: 'Album',
-                    trackCount: 10
-                }
-            ]
+class UserPage {
+    constructor() {
+        this.tracks = [];
+        this.currentArtist = null;
+        this.init();
+    }
+
+    async init() {
+        await this.loadTracks();
+        this.extractArtistFromURL();
+        this.populateArtistInfo();
+        this.populatePopularTracks();
+        this.populateAlbums();
+        this.setupEventListeners();
+    }
+
+    async loadTracks() {
+        this.tracks = await DataService.fetchTracks();
+    }
+
+    extractArtistFromURL() {
+        const urlParams = new URLSearchParams(window.location.search);
+        this.currentArtist = urlParams.get('artist') || 'Artist Name';
+    }
+
+    populateArtistInfo() {
+        const artistName = document.querySelector('.artist-name');
+        const artistImage = document.querySelector('.artist-image');
+        const monthlyListeners = document.querySelector('.artist-stats');
+        
+        artistName.textContent = this.currentArtist;
+        
+        const artistTracks = this.tracks.filter(track => 
+            track.artists.includes(this.currentArtist)
+        );
+        
+        monthlyListeners.textContent = `${artistTracks.length * 1234} monthly listeners`;
+        
+        if (artistTracks.length > 0 && artistTracks[0].artworkFile) {
+            artistImage.style.backgroundImage = `url(${DataService.getArtworkUrl(artistTracks[0].artworkFile)})`;
+            artistImage.style.backgroundSize = 'cover';
+            artistImage.style.backgroundPosition = 'center';
         }
     }
-};
 
-// Helper function to format numbers (e.g., 2500000 -> 2.5M)
-function formatNumber(num) {
-    if (num >= 1000000000) {
-        return (num / 1000000000).toFixed(1) + 'B';
-    }
-    if (num >= 1000000) {
-        return (num / 1000000).toFixed(1) + 'M';
-    }
-    if (num >= 1000) {
-        return (num / 1000).toFixed(1) + 'K';
-    }
-    return num.toString();
-}
-
-// Function to load artist data
-function loadArtistData(artistId) {
-    // In production, this would be an API call:
-    // return fetch(`/api/artists/${artistId}`).then(res => res.json());
-    
-    // For now, return data from placeholder database
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            const artist = artistDatabase.artists[artistId];
-            if (artist) {
-                resolve(artist);
+    populatePopularTracks() {
+        const trackItems = document.querySelectorAll('.track-item');
+        const artistTracks = this.tracks.filter(track => 
+            track.artists.includes(this.currentArtist)
+        ).slice(0, 5);
+        
+        trackItems.forEach((item, index) => {
+            if (artistTracks[index]) {
+                const track = artistTracks[index];
+                const trackNumber = item.querySelector('.track-number');
+                const trackCover = item.querySelector('.track-cover');
+                const trackName = item.querySelector('.track-name');
+                const trackPlays = item.querySelector('.track-plays');
+                const trackDuration = item.querySelector('.track-duration');
+                
+                trackNumber.textContent = index + 1;
+                trackName.textContent = track.title;
+                trackPlays.textContent = `${Math.floor(Math.random() * 100000) + 1000} plays`;
+                trackDuration.textContent = `${Math.floor(Math.random() * 3) + 1}:${String(Math.floor(Math.random() * 60)).padStart(2, '0')}`;
+                
+                if (track.artworkFile) {
+                    trackCover.style.backgroundImage = `url(${DataService.getArtworkUrl(track.artworkFile)})`;
+                    trackCover.style.backgroundSize = 'cover';
+                    trackCover.style.backgroundPosition = 'center';
+                }
+                
+                item.dataset.trackId = track.id;
             } else {
-                reject(new Error('Artist not found'));
-            }
-        }, 500); // Simulate network delay
-    });
-}
-
-// Function to render artist header
-function renderArtistHeader(artist) {
-    const artistImage = document.querySelector('.artist-image');
-    const artistName = document.querySelector('.artist-name');
-    const verifiedBadge = document.querySelector('.verified-badge');
-    const artistStats = document.querySelector('.artist-stats');
-    
-    // Set profile picture or placeholder text
-    if (artist.profilePicture) {
-        artistImage.style.backgroundImage = `url(${artist.profilePicture})`;
-        artistImage.style.backgroundSize = 'cover';
-        artistImage.textContent = '';
-    } else {
-        artistImage.textContent = artist.name.split(' ').map(word => word[0]).join('').substring(0, 2).toUpperCase();
-    }
-    
-    artistName.textContent = artist.name;
-    
-    if (artist.isVerified) {
-        verifiedBadge.style.display = 'flex';
-    } else {
-        verifiedBadge.style.display = 'none';
-    }
-    
-    artistStats.textContent = `${formatNumber(artist.monthlyListeners)} monthly listeners`;
-}
-
-// Function to render popular tracks
-function renderPopularTracks(tracks) {
-    const tracksContainer = document.querySelector('.popular-tracks');
-    tracksContainer.innerHTML = '';
-    
-    tracks.forEach((track, index) => {
-        const trackElement = document.createElement('div');
-        trackElement.className = 'track-item';
-        trackElement.dataset.trackId = track.id;
-        
-        trackElement.innerHTML = `
-            <div class="track-number">${index + 1}</div>
-            <div class="track-cover" style="${track.coverImage ? `background-image: url(${track.coverImage}); background-size: cover;` : ''}">
-                ${track.coverImage ? '' : 'COVER'}
-            </div>
-            <div class="track-info">
-                <div class="track-name">${track.title}</div>
-                <div class="track-plays">${formatNumber(track.plays)} plays</div>
-            </div>
-            <div class="track-duration">${track.duration}</div>
-            <div class="track-actions">
-                <button class="icon-btn" onclick="toggleLike('${track.id}')">♥</button>
-                <button class="icon-btn" onclick="showTrackMenu('${track.id}')">⋯</button>
-            </div>
-        `;
-        
-        trackElement.addEventListener('click', (e) => {
-            if (!e.target.closest('.track-actions')) {
-                playTrack(track.id);
+                item.style.display = 'none';
             }
         });
-        
-        tracksContainer.appendChild(trackElement);
-    });
-}
+    }
 
-// Function to render discography
-function renderDiscography(albums) {
-    const albumsContainer = document.querySelector('.albums-grid');
-    albumsContainer.innerHTML = '';
-    
-    albums.forEach(album => {
-        const albumElement = document.createElement('div');
-        albumElement.className = 'album-card';
-        albumElement.dataset.albumId = album.id;
+    populateAlbums() {
+        const albumCards = document.querySelectorAll('.album-card');
+        const artistTracks = this.tracks.filter(track => 
+            track.artists.includes(this.currentArtist)
+        );
         
-        albumElement.innerHTML = `
-            <div class="album-cover" style="${album.coverImage ? `background-image: url(${album.coverImage}); background-size: cover;` : ''}">
-                ${album.coverImage ? '' : album.type.toUpperCase()}
-            </div>
-            <div class="album-info">
-                <div class="album-title">${album.title}</div>
-                <div class="album-year">${album.year} • ${album.type}</div>
-            </div>
-        `;
+        const uniqueAlbums = [...new Set(artistTracks.map(track => track.title))];
+        const albumData = uniqueAlbums.slice(0, 5).map((title, index) => ({
+            title: title,
+            year: 2020 + Math.floor(Math.random() * 5),
+            type: ['Album', 'Single', 'EP'][Math.floor(Math.random() * 3)],
+            track: artistTracks.find(t => t.title === title)
+        }));
         
-        albumElement.addEventListener('click', () => {
-            openAlbum(album.id);
+        albumCards.forEach((card, index) => {
+            if (albumData[index]) {
+                const album = albumData[index];
+                const albumCover = card.querySelector('.album-cover');
+                const albumTitle = card.querySelector('.album-title');
+                const albumYear = card.querySelector('.album-year');
+                
+                albumTitle.textContent = album.title;
+                albumYear.textContent = `${album.year} • ${album.type}`;
+                
+                if (album.track && album.track.artworkFile) {
+                    albumCover.style.backgroundImage = `url(${DataService.getArtworkUrl(album.track.artworkFile)})`;
+                    albumCover.style.backgroundSize = 'cover';
+                    albumCover.style.backgroundPosition = 'center';
+                }
+                
+                // Add click event to navigate to specific album page
+                card.addEventListener('click', () => {
+                    const albumName = encodeURIComponent(album.title);
+                    window.location.href = `album.html?album=${albumName}`;
+                });
+                
+                card.style.cursor = 'pointer';
+            } else {
+                card.style.display = 'none';
+            }
         });
-        
-        albumsContainer.appendChild(albumElement);
-    });
-}
+    }
 
-// Function to render about section
-function renderAbout(aboutText) {
-    const aboutContent = document.querySelector('.about-content');
-    aboutContent.textContent = aboutText;
-}
+    setupEventListeners() {
+        // Play button
+        const playButton = document.querySelector('.btn-play');
+        if (playButton) {
+            playButton.addEventListener('click', () => {
+                console.log(`Playing ${this.currentArtist}`);
+            });
+        }
 
-// Main initialization function
-async function initializeArtistPage() {
-    try {
-        // Get artist ID from URL parameters
-        const urlParams = new URLSearchParams(window.location.search);
-        const artistId = urlParams.get('id') || 'artist-1'; // Default to artist-1
-        
-        // Show loading state
-        showLoadingState();
-        
-        // Load artist data
-        const artist = await loadArtistData(artistId);
-        
-        // Render all sections
-        renderArtistHeader(artist);
-        renderPopularTracks(artist.popularTracks);
-        renderDiscography(artist.discography);
-        renderAbout(artist.about);
-        
-        // Hide loading state
-        hideLoadingState();
-        
-        console.log('Artist page loaded successfully:', artist.name);
-    } catch (error) {
-        console.error('Error loading artist page:', error);
-        showErrorState(error.message);
+        // Follow button
+        const followButton = document.querySelector('.btn-follow');
+        if (followButton) {
+            followButton.addEventListener('click', function() {
+                if (this.textContent === 'Follow') {
+                    this.textContent = 'Following';
+                    this.style.backgroundColor = '#1ed760';
+                    this.style.color = 'white';
+                } else {
+                    this.textContent = 'Follow';
+                    this.style.backgroundColor = '';
+                    this.style.color = '';
+                }
+            });
+        }
+
+        // Track items
+        document.querySelectorAll('.track-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const trackName = this.querySelector('.track-name').textContent;
+                console.log(`Playing track: ${trackName}`);
+                
+                // Update footer player if it exists
+                const titleLink = document.querySelector('.nameby div a');
+                const artistLink = document.querySelector('.nameby a:last-child');
+                if (titleLink) titleLink.textContent = trackName;
+                if (artistLink) artistLink.textContent = this.currentArtist;
+            });
+        });
+
+        // Favorite buttons
+        document.querySelectorAll('.icon-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                if (this.textContent === '♥') {
+                    this.textContent = '♡';
+                    this.style.color = '';
+                } else {
+                    this.textContent = '♥';
+                    this.style.color = '#1ed760';
+                }
+            });
+        });
+
+        // Footer player buttons
+        document.querySelectorAll('.buttonsb').forEach(btn => {
+            btn.addEventListener('click', function() {
+                console.log('Player button clicked');
+            });
+        });
+
+        // Volume control
+        const volumeControl = document.querySelector('.volume');
+        if (volumeControl) {
+            volumeControl.addEventListener('input', function() {
+                console.log('Volume:', this.value);
+            });
+        }
     }
 }
 
-// Placeholder functions for interactivity
-function playTrack(trackId) {
-    console.log('Playing track:', trackId);
-    // In production, this would trigger the audio player
-    alert(`Playing track: ${trackId}`);
-}
-
-function toggleLike(trackId) {
-    console.log('Toggle like for track:', trackId);
-    // In production, this would update the user's liked songs
-}
-
-function showTrackMenu(trackId) {
-    console.log('Show menu for track:', trackId);
-    // In production, this would show a context menu
-}
-
-function openAlbum(albumId) {
-    console.log('Opening album:', albumId);
-    // In production, this would navigate to album page
-    alert(`Opening album: ${albumId}`);
-}
-
-function showLoadingState() {
-    // Add loading indicators
-    document.querySelector('.artist-name').textContent = 'Loading...';
-}
-
-function hideLoadingState() {
-    // Remove loading indicators
-}
-
-function showErrorState(message) {
-    const main = document.querySelector('main');
-    main.innerHTML = `
-        <div style="text-align: center; padding: 50px; color: var(--cor-branca);">
-            <h2>Error Loading Artist</h2>
-            <p>${message}</p>
-            <button onclick="location.reload()" style="margin-top: 20px; padding: 10px 20px; background-color: var(--cor-primaria); color: white; border: none; border-radius: 5px; cursor: pointer;">
-                Retry
-            </button>
-        </div>
-    `;
-}
-
-// Play button functionality
 document.addEventListener('DOMContentLoaded', () => {
-    initializeArtistPage();
-    
-    // Add event listener for play button in header
-    const playButton = document.querySelector('.btn-play');
-    if (playButton) {
-        playButton.addEventListener('click', () => {
-            console.log('Play all tracks');
-            // In production, this would start playing the artist's top tracks
-            alert('Playing all popular tracks...');
-        });
-    }
-    
-    // Add event listener for follow button
-    const followButton = document.querySelector('.btn-follow');
-    if (followButton) {
-        followButton.addEventListener('click', () => {
-            const isFollowing = followButton.textContent === 'Following';
-            followButton.textContent = isFollowing ? 'Follow' : 'Following';
-            console.log(isFollowing ? 'Unfollowed artist' : 'Followed artist');
-        });
-    }
+    new UserPage();
 });
-
-// Export functions for use in other modules (if using modules)
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = {
-        loadArtistData,
-        formatNumber,
-        initializeArtistPage
-    };
-}
