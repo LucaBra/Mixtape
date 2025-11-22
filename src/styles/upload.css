@@ -69,6 +69,17 @@ main {
     background-color: rgba(76, 155, 219, 0.1);
 }
 
+.song-upload, .artwork-upload {
+    transition: all 0.2s ease;
+}
+
+.song-upload.drag-over,
+.artwork-upload.drag-over {
+    border-color: #1ed760;
+    background: rgba(30, 215, 96, 0.1);
+    transform: scale(1.02);
+}
+
 .song-upload .upload-placeholder p {
     font-size: 14px;
     color: var(--cor-branca);
