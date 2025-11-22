@@ -1,138 +1,175 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TAPE - Upload</title>
-    <link rel="stylesheet" href="../styles/global.css"> 
-    <link rel="stylesheet" href="../styles/upload.css">
-</head>
-<body>
-     <div class="topbar">
-        <h2><a href="mix.html">MIX</a></h2>
-        <h1 class="center"><a href="tape.html">TAPE</a></h1>
-    </div>
-    <nav>
-        <ul>
-            <li id="profileBtn" data-tooltip="Perfil">
-                <a href="user.html">
-                    <img src="../components/svg/Profile.svg" alt="Perfil">
-                </a>
-            </li>
-            <li id="searchBtn" data-tooltip="Buscar">
-                <a href="#">
-                    <img src="../components/svg/Search.svg" alt="Buscar">
-                </a>
-            </li>
-            <li id="libraryBtn" data-tooltip="Biblioteca">
-                <a href="paginaInicial.html">
-                    <img src="../components/svg/Library.svg" alt="Biblioteca">
-                </a>
-            </li>
-            <li id="uploadBtn" data-tooltip="Upload">
-                <a href="#">
-                    <img src="../components/svg/Upload.svg" alt="Upload">
-                </a>
-            </li>
-            <li id="pinBtn" data-tooltip="Fixar">
-                <a href="#">
-                    <img src="../components/svg/Pin.svg" alt="Fixar">
-                </a>
-            </li>
-        </ul>
-    </nav>
-    <main>
-        <div class="songupload-container">
-             <div class="song-section">
-                <div class="song-upload" id="songUpload">
-                    <div class="upload-placeholder">
-                        <div class="songupload-icon">🎵</div>
-                        <p><strong>Adicionar nova musica</strong></p>
-                    </div>
-                </div>
-                <input type="file" id="songInput" accept=".mp3,.ogg,.wav,.flac,.aac,.m4a">
-            </div>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>TAPE - Upload</title>
+        <link rel="stylesheet" href="../styles/global.css" />
+        <link rel="stylesheet" href="../styles/upload.css" />
+    </head>
+    <body>
+        <div class="topbar">
+            <h2><a href="mix.html">MIX</a></h2>
+            <h1 class="center"><a href="tape.html">TAPE</a></h1>
         </div>
-        <div class="upload-container">
-            <div class="artwork-section">
-                <div class="artwork-upload" id="artworkUpload">
-                    <div class="upload-placeholder">
-                        <div class="upload-icon">🖼️</div>
-                        <p><strong>Adicionar nova arte</strong></p>
+        <nav>
+            <ul>
+                <li id="profileBtn" data-tooltip="Perfil">
+                    <a href="user.html">
+                        <img src="../components/svg/Profile.svg" alt="Perfil" />
+                    </a>
+                </li>
+                <li id="searchBtn" data-tooltip="Buscar">
+                    <a href="#">
+                        <img src="../components/svg/Search.svg" alt="Buscar" />
+                    </a>
+                </li>
+                <li id="libraryBtn" data-tooltip="Biblioteca">
+                    <a href="album.html">
+                        <img
+                            src="../components/svg/Library.svg"
+                            alt="Biblioteca"
+                        />
+                    </a>
+                </li>
+                <li id="uploadBtn" data-tooltip="Upload">
+                    <a href="#">
+                        <img src="../components/svg/Upload.svg" alt="Upload" />
+                    </a>
+                </li>
+                <li id="pinBtn" data-tooltip="Fixar">
+                    <a href="#">
+                        <img src="../components/svg/Pin.svg" alt="Fixar" />
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <main>
+            <div class="songupload-container">
+                <div class="song-section">
+                    <div class="song-upload" id="songUpload">
+                        <div class="upload-placeholder">
+                            <div class="songupload-icon">🎵</div>
+                            <p><strong>Adicionar nova musica</strong></p>
+                        </div>
                     </div>
-                    <img id="artworkPreview" alt="Artwork preview">
+                    <input
+                        type="file"
+                        id="songInput"
+                        accept=".mp3,.ogg,.wav,.flac,.aac,.m4a"
+                    />
                 </div>
-                <input type="file" id="artworkInput" accept=".jpeg,.jpg,.png,.gif">
             </div>
-
-            <div class="form-section">
-                <div class="form-group">
-                    <label>
-                        Título da faixa <span class="required">*</span>
-                        <span class="help-icon">?</span>
-                    </label>
-                    <input type="text" id="trackTitle" placeholder="">
-                </div>
-
-                <div class="form-group">
-                    <label>Link da faixa</label>
-                    <input type="url" id="trackLink" placeholder="https://mixtape.com/user/">
-                </div>
-
-                <div class="form-group">
-                    <label>
-                        Artista(s) principal(ais) <span class="required">*</span>
-                        <span class="help-icon">?</span>
-                    </label>
-                    <input type="text" id="artists">
-                    <p class="form-hint">Dica: Use vírgulas para adicionar vários nomes de artistas.</p>
-                </div>
-
-                <div class="form-group">
-                    <label>Gênero</label>
-                    <select id="genre">
-                        <option value="">Adicionar ou pesquisar por gênero</option>
-                        <option value="rock">Rock</option>
-                        <option value="pop">Pop</option>
-                        <option value="jazz">Jazz</option>
-                        <option value="electronic">Electronic</option>
-                        <option value="hip-hop">Hip Hop</option>
-                        <option value="classical">Classical</option>
-                        <option value="reggae">Reggae</option>
-                        <option value="blues">Blues</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label>
-                        Tags <span class="help-icon">?</span>
-                    </label>
-                    <input type="text" id="tags" placeholder="Adicione estilos, humores e ritmo.">
-                </div>
-
-                <div class="form-group">
-                    <label>Descrição</label>
-                    <textarea id="description" placeholder="Faixas com descrições tendem a receber mais reproduções e engajamentos."></textarea>
-                </div>
-
-                <div class="form-group">
-                    <label>Privacidade da Faixa</label>
-                    <div class="privacy-options">
-                        <label class="radio-option">
-                            <input type="radio" name="privacy" value="public" checked>
-                            <span>Público</span>
-                        </label>
-                        <label class="radio-option">
-                            <input type="radio" name="privacy" value="private">
-                            <span>Privado</span>
-                        </label>
+            <div class="upload-container">
+                <div class="artwork-section">
+                    <div class="artwork-upload" id="artworkUpload">
+                        <div class="upload-placeholder">
+                            <div class="upload-icon">🖼️</div>
+                            <p><strong>Adicionar nova arte</strong></p>
+                        </div>
+                        <img id="artworkPreview" alt="Artwork preview" />
                     </div>
+                    <input
+                        type="file"
+                        id="artworkInput"
+                        accept=".jpeg,.jpg,.png,.gif"
+                    />
                 </div>
 
-                <button class="submit-button" onclick="handleUpload()">Enviar Faixa</button>
+                <div class="form-section">
+                    <div class="form-group">
+                        <label>
+                            Título da faixa <span class="required">*</span>
+                            <span class="help-icon">?</span>
+                        </label>
+                        <input type="text" id="trackTitle" placeholder="" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Link da faixa</label>
+                        <input
+                            type="url"
+                            id="trackLink"
+                            placeholder="https://mixtape.com/user/"
+                        />
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                            Artista(s) principal(ais)
+                            <span class="required">*</span>
+                            <span class="help-icon">?</span>
+                        </label>
+                        <input type="text" id="artists" />
+                        <p class="form-hint">
+                            Dica: Use vírgulas para adicionar vários nomes de
+                            artistas.
+                        </p>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Gênero</label>
+                        <select id="genre">
+                            <option value="">
+                                Adicionar ou pesquisar por gênero
+                            </option>
+                            <option value="rock">Rock</option>
+                            <option value="pop">Pop</option>
+                            <option value="jazz">Jazz</option>
+                            <option value="electronic">Electronic</option>
+                            <option value="hip-hop">Hip Hop</option>
+                            <option value="classical">Classical</option>
+                            <option value="reggae">Reggae</option>
+                            <option value="blues">Blues</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label> Tags <span class="help-icon">?</span> </label>
+                        <input
+                            type="text"
+                            id="tags"
+                            placeholder="Adicione estilos, humores e ritmo."
+                        />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Descrição</label>
+                        <textarea
+                            id="description"
+                            placeholder="Faixas com descrições tendem a receber mais reproduções e engajamentos."
+                        ></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Privacidade da Faixa</label>
+                        <div class="privacy-options">
+                            <label class="radio-option">
+                                <input
+                                    type="radio"
+                                    name="privacy"
+                                    value="public"
+                                    checked
+                                />
+                                <span>Público</span>
+                            </label>
+                            <label class="radio-option">
+                                <input
+                                    type="radio"
+                                    name="privacy"
+                                    value="private"
+                                />
+                                <span>Privado</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <button class="submit-button" onclick="handleUpload()">
+                        Enviar Faixa
+                    </button>
+                </div>
             </div>
-        </div>
-    </main>
-    <script src="../scripts/upload.js"></script>
-</body>
+        </main>
+        <script src="../scripts/upload.js"></script>
+    </body>
 </html>

@@ -1,245 +1,264 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TAPE - Album</title>
-    <link rel="stylesheet" href="../styles/global.css"> 
-    <link rel="stylesheet" href="../styles/album.css">
-</head>
-<body>
-     <div class="topbar">
-        <h2><a href="mix.html">MIX</a></h2>
-        <h1 class="center"><a href="tape.html">TAPE</a></h1>   
-    </div>
-    <nav>
-        <ul>
-            <li id="profileBtn" data-tooltip="Perfil">
-                <a href="user.html">
-                    <img src="../components/svg/Profile.svg" alt="Perfil">
-                </a>
-            </li>
-            <li id="searchBtn" data-tooltip="Buscar">
-                <a href="#">
-                    <img src="../components/svg/Search.svg" alt="Buscar">
-                </a>
-            </li>
-            <li id="libraryBtn" data-tooltip="Biblioteca">
-                <a href="paginaInicial.html">
-                    <img src="../components/svg/Library.svg" alt="Biblioteca">
-                </a>
-            </li>
-            <li id="uploadBtn" data-tooltip="Upload">
-                <a href="upload.html">
-                    <img src="../components/svg/Upload.svg" alt="Upload">
-                </a>
-            </li>
-            <li id="pinBtn" data-tooltip="Fixar">
-                <a href="#">
-                    <img src="../components/svg/Pin.svg" alt="Fixar">
-                </a>
-            </li>
-        </ul>
-    </nav>
-    <main>
-        <div class="album-header">
-            <div class="album-cover"></div>
-            <div class="album-info">
-                <div class="album-type">Album</div>
-                <h1 class="album-title">Album Title</h1>
-                <div class="album-artist">
-                    <div class="artist-avatar"></div>
-                    <span><strong>Artist Name</strong></span>
-                </div>
-                <div class="album-meta">
-                    <span>? songs</span>
-                    <span>•</span>
-                    <span>about ?? hr ?? min</span>
-                </div>
-            </div>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>TAPE - Album</title>
+        <link rel="stylesheet" href="../styles/global.css" />
+        <link rel="stylesheet" href="../styles/album.css" />
+    </head>
+    <body>
+        <div class="topbar">
+            <h2><a href="mix.html">MIX</a></h2>
+            <h1 class="center"><a href="tape.html">TAPE</a></h1>
         </div>
-
-        <div class="album-controls">
-            <button class="play-button" aria-label="Tocar álbum">▶</button>
-            <button class="control-btn" aria-label="Ordem aleatória">
-                <img src="../components/svg/Shuffle.svg">
-            </button>
-            <button class="control-btn" aria-label="Salvar na biblioteca">♡</button>
-            <button class="control-btn" aria-label="Mais opções">⋯</button>
-        </div>
-
-        <div class="tracklist">
-            <div class="tracklist-header">
-                <div>#</div>
-                <div>Title</div>
-                <div>⏱</div>
-                <div>Plays</div>
-                <div>Last played</div>
-                <div>Bitrate</div>
-                <div>Quality</div>
-                <div>♡</div>
-            </div>
-            <div class="track-row" data-track="1">
-                <div class="track-number">1</div>
-                <div class="track-info">
-                    <div class="track-cover"></div>
-                    <div class="track-details">
-                        <div class="track-title">Track Name</div>
-                        <div class="track-artist">Artist</div>
+        <nav>
+            <ul>
+                <li id="profileBtn" data-tooltip="Perfil">
+                    <a href="user.html">
+                        <img src="../components/svg/Profile.svg" alt="Perfil" />
+                    </a>
+                </li>
+                <li id="searchBtn" data-tooltip="Buscar">
+                    <a href="#">
+                        <img src="../components/svg/Search.svg" alt="Buscar" />
+                    </a>
+                </li>
+                <li id="libraryBtn" data-tooltip="Biblioteca">
+                    <a href="album.html">
+                        <img
+                            src="../components/svg/Library.svg"
+                            alt="Biblioteca"
+                        />
+                    </a>
+                </li>
+                <li id="uploadBtn" data-tooltip="Upload">
+                    <a href="upload.html">
+                        <img src="../components/svg/Upload.svg" alt="Upload" />
+                    </a>
+                </li>
+                <li id="pinBtn" data-tooltip="Fixar">
+                    <a href="#">
+                        <img src="../components/svg/Pin.svg" alt="Fixar" />
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <main>
+            <div class="album-header">
+                <div class="album-cover"></div>
+                <div class="album-info">
+                    <div class="album-type">Album</div>
+                    <h1 class="album-title">Album Title</h1>
+                    <div class="album-artist">
+                        <div class="artist-avatar"></div>
+                        <span><strong>Artist Name</strong></span>
+                    </div>
+                    <div class="album-meta">
+                        <span>? songs</span>
+                        <span>•</span>
+                        <span>about ?? hr ?? min</span>
                     </div>
                 </div>
-                <div class="track-duration">????</div>
-                <div class="track-plays">?</div>
-                <div class="track-date">?</div>
-                <div class="track-bitrate">? kbps</div>
-                <div><span class="quality-badge">?</span></div>
-                <div class="track-favorite">♡</div>
             </div>
 
-            <div class="track-row" data-track="2">
-                <div class="track-number">2</div>
-                <div class="track-info">
-                    <div class="track-cover"></div>
-                    <div class="track-details">
-                        <div class="track-title">Track Name</div>
-                        <div class="track-artist">Artist</div>
-                    </div>
-                </div>
-                <div class="track-duration">????</div>
-                <div class="track-plays">?</div>
-                <div class="track-date">?</div>
-                <div class="track-bitrate">? kbps</div>
-                <div><span class="quality-badge">?</span></div>
-                <div class="track-favorite">♡</div>
+            <div class="album-controls">
+                <button class="play-button" aria-label="Tocar álbum">▶</button>
+                <button class="control-btn" aria-label="Ordem aleatória">
+                    <img src="../components/svg/Shuffle.svg" />
+                </button>
+                <button class="control-btn" aria-label="Salvar na biblioteca">
+                    ♡
+                </button>
+                <button class="control-btn" aria-label="Mais opções">⋯</button>
             </div>
 
-            <div class="track-row" data-track="3">
-                <div class="track-number">3</div>
-                <div class="track-info">
-                    <div class="track-cover"></div>
-                    <div class="track-details">
-                        <div class="track-title">Track Name</div>
-                        <div class="track-artist">Artist</div>
-                    </div>
+            <div class="tracklist">
+                <div class="tracklist-header">
+                    <div>#</div>
+                    <div>Title</div>
+                    <div>⏱</div>
+                    <div>Plays</div>
+                    <div>Last played</div>
+                    <div>Bitrate</div>
+                    <div>Quality</div>
+                    <div>♡</div>
                 </div>
-                <div class="track-duration">????</div>
-                <div class="track-plays">?</div>
-                <div class="track-date">?</div>
-                <div class="track-bitrate">? kbps</div>
-                <div><span class="quality-badge">?</span></div>
-                <div class="track-favorite">♡</div>
-            </div>
+                <div class="track-row" data-track="1">
+                    <div class="track-number">1</div>
+                    <div class="track-info">
+                        <div class="track-cover"></div>
+                        <div class="track-details">
+                            <div class="track-title">Track Name</div>
+                            <div class="track-artist">Artist</div>
+                        </div>
+                    </div>
+                    <div class="track-duration">????</div>
+                    <div class="track-plays">?</div>
+                    <div class="track-date">?</div>
+                    <div class="track-bitrate">? kbps</div>
+                    <div><span class="quality-badge">?</span></div>
+                    <div class="track-favorite">♡</div>
+                </div>
 
-            <div class="track-row" data-track="4">
-                <div class="track-number">4</div>
-                <div class="track-info">
-                    <div class="track-cover"></div>
-                    <div class="track-details">
-                        <div class="track-title">Track Name</div>
-                        <div class="track-artist">Artist</div>
+                <div class="track-row" data-track="2">
+                    <div class="track-number">2</div>
+                    <div class="track-info">
+                        <div class="track-cover"></div>
+                        <div class="track-details">
+                            <div class="track-title">Track Name</div>
+                            <div class="track-artist">Artist</div>
+                        </div>
                     </div>
+                    <div class="track-duration">????</div>
+                    <div class="track-plays">?</div>
+                    <div class="track-date">?</div>
+                    <div class="track-bitrate">? kbps</div>
+                    <div><span class="quality-badge">?</span></div>
+                    <div class="track-favorite">♡</div>
                 </div>
-                <div class="track-duration">????</div>
-                <div class="track-plays">?</div>
-                <div class="track-date">?</div>
-                <div class="track-bitrate">? kbps</div>
-                <div><span class="quality-badge">?</span></div>
-                <div class="track-favorite">♡</div>
-            </div>
 
-            <div class="track-row" data-track="5">
-                <div class="track-number">5</div>
-                <div class="track-info">
-                    <div class="track-cover"></div>
-                    <div class="track-details">
-                        <div class="track-title">Track Name</div>
-                        <div class="track-artist">Artist</div>
+                <div class="track-row" data-track="3">
+                    <div class="track-number">3</div>
+                    <div class="track-info">
+                        <div class="track-cover"></div>
+                        <div class="track-details">
+                            <div class="track-title">Track Name</div>
+                            <div class="track-artist">Artist</div>
+                        </div>
                     </div>
+                    <div class="track-duration">????</div>
+                    <div class="track-plays">?</div>
+                    <div class="track-date">?</div>
+                    <div class="track-bitrate">? kbps</div>
+                    <div><span class="quality-badge">?</span></div>
+                    <div class="track-favorite">♡</div>
                 </div>
-                <div class="track-duration">????</div>
-                <div class="track-plays">?</div>
-                <div class="track-date">?</div>
-                <div class="track-bitrate">? kbps</div>
-                <div><span class="quality-badge">?</span></div>
-                <div class="track-favorite">♡</div>
-            </div>
 
-            <div class="track-row" data-track="6">
-                <div class="track-number">6</div>
-                <div class="track-info">
-                    <div class="track-cover"></div>
-                    <div class="track-details">
-                        <div class="track-title">Track Name</div>
-                        <div class="track-artist">Artist</div>
+                <div class="track-row" data-track="4">
+                    <div class="track-number">4</div>
+                    <div class="track-info">
+                        <div class="track-cover"></div>
+                        <div class="track-details">
+                            <div class="track-title">Track Name</div>
+                            <div class="track-artist">Artist</div>
+                        </div>
+                    </div>
+                    <div class="track-duration">????</div>
+                    <div class="track-plays">?</div>
+                    <div class="track-date">?</div>
+                    <div class="track-bitrate">? kbps</div>
+                    <div><span class="quality-badge">?</span></div>
+                    <div class="track-favorite">♡</div>
+                </div>
+
+                <div class="track-row" data-track="5">
+                    <div class="track-number">5</div>
+                    <div class="track-info">
+                        <div class="track-cover"></div>
+                        <div class="track-details">
+                            <div class="track-title">Track Name</div>
+                            <div class="track-artist">Artist</div>
+                        </div>
+                    </div>
+                    <div class="track-duration">????</div>
+                    <div class="track-plays">?</div>
+                    <div class="track-date">?</div>
+                    <div class="track-bitrate">? kbps</div>
+                    <div><span class="quality-badge">?</span></div>
+                    <div class="track-favorite">♡</div>
+                </div>
+
+                <div class="track-row" data-track="6">
+                    <div class="track-number">6</div>
+                    <div class="track-info">
+                        <div class="track-cover"></div>
+                        <div class="track-details">
+                            <div class="track-title">Track Name</div>
+                            <div class="track-artist">Artist</div>
+                        </div>
+                    </div>
+                    <div class="track-duration">????</div>
+                    <div class="track-plays">?</div>
+                    <div class="track-date">?</div>
+                    <div class="track-bitrate">? kbps</div>
+                    <div><span class="quality-badge">?</span></div>
+                    <div class="track-favorite">♡</div>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <div class="footer-bar">
+                <div class="albumview">
+                    <!--AlbumView-->
+                    <div class="cover">
+                        <img class="coverimg" alt="" />
+                    </div>
+                    <div class="nameby">
+                        <div>
+                            <a href="">Title</a>
+                        </div>
+                        <a href="">Artist</a>
                     </div>
                 </div>
-                <div class="track-duration">????</div>
-                <div class="track-plays">?</div>
-                <div class="track-date">?</div>
-                <div class="track-bitrate">? kbps</div>
-                <div><span class="quality-badge">?</span></div>
-                <div class="track-favorite">♡</div>
-            </div>
-        </div>
-    </main>
-    <footer>
-        <div class="footer-bar">
-            <div class="albumview">
-                <!--AlbumView-->
-                <div class="cover">
-                    <img class="coverimg" alt="">
-                </div>
-                <div class="nameby">
-                    <div>
-                        <a href="">Title</a>
+                <div class="butbar">
+                    <div class="timenbar">
+                        <small style="text-align: right">00:00</small>
+                        <span class="playbar">
+                            <span id="borderpb"></span>
+                            <span id="pulley"></span>
+                        </span>
+                        <small style="text-align: left">00:00</small>
+                        <!--PlayBar-->
                     </div>
-                    <a href="">Artist</a> 
+                    <div class="buttons">
+                        <!--Buttons-->
+                        <button class="buttonsb">
+                            <img src="../components/svg/Tape.svg" alt="" />
+                        </button>
+                        <button class="buttonsb">
+                            <img src="../components/svg/Loop.svg" alt="" />
+                        </button>
+                        <button class="buttonsb">
+                            <img src="../components/svg/Back.svg" alt="" />
+                        </button>
+                        <button class="buttonsb" onclick="togglePlay()">
+                            <img
+                                id="playBtn"
+                                src="../components/svg/Play.svg"
+                                alt=""
+                            />
+                        </button>
+                        <button class="buttonsb">
+                            <img src="../components/svg/Forward.svg" alt="" />
+                        </button>
+                        <button class="buttonsb">
+                            <img src="../components/svg/Shuffle.svg" alt="" />
+                        </button>
+                        <script src="../scripts/sbar.js"></script>
+                    </div>
+                </div>
+                <div class="options">
+                    <div class="volume-control">
+                        <!--Volume&Options-->
+                        <span class="volume-icon">🔊</span>
+                        <input
+                            type="range"
+                            min="0"
+                            max="100"
+                            value="50"
+                            class="volume"
+                        />
+                    </div>
+                    <img
+                        style="cursor: pointer"
+                        src="../components/svg/Menu.svg"
+                        alt=""
+                    />
                 </div>
             </div>
-            <div class="butbar">
-                <div class="timenbar">
-                    <small style="text-align: right;">00:00</small>
-                    <span class="playbar">
-                        <span id="borderpb"></span>
-                        <span id="pulley"></span>
-                    </span>
-                    <small style="text-align: left;">00:00</small>
-                    <!--PlayBar-->
-                </div>
-                <div class="buttons">
-                    <!--Buttons-->
-                    <button class="buttonsb">
-                        <img src="../components/svg/Tape.svg" alt="">
-                    </button>
-                    <button class="buttonsb">
-                        <img src="../components/svg/Loop.svg" alt="">
-                    </button>
-                    <button class="buttonsb">
-                        <img src="../components/svg/Back.svg" alt="">
-                    </button>
-                    <button class="buttonsb" onclick="togglePlay()">
-                        <img id="playBtn" src="../components/svg/Play.svg" alt="">
-                    </button>
-                    <button class="buttonsb">
-                        <img src="../components/svg/Forward.svg" alt="">
-                    </button>
-                    <button class="buttonsb">
-                        <img src="../components/svg/Shuffle.svg" alt="">
-                    </button>
-                    <script src="../scripts/sbar.js"></script>
-                </div>
-            </div>
-            <div class="options">
-                <div class="volume-control">
-                    <!--Volume&Options-->
-                    <span class="volume-icon">🔊</span>
-                    <input type="range" min="0" max="100" value="50" class="volume">
-                </div>
-                <img style="cursor:pointer;" src="../components/svg/Menu.svg" alt="">
-            </div>
-        </div>
-    </footer>
-    <script src="../scripts/dataService.js"></script>
-    <script src="../scripts/album.js"></script>
-</body>
+        </footer>
+        <script src="../scripts/dataService.js"></script>
+        <script src="../scripts/album.js"></script>
+    </body>
 </html>
