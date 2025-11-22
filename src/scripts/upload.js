@@ -99,13 +99,13 @@ async function handleUpload() {
             songInput.value = '';
             artworkInput.value = '';
         } else {
-            alert('Erro ao enviar faixa: ' + result.message); // Idealmente, trocar por uma mensagem na tela
+            alert('Erro ao enviar faixa: ' + result.message);
         }
     } catch (error) {
         console.error('Upload error:', error);
         alert('Erro ao enviar faixa. Verifique se o servidor está rodando em localhost:3000');
     } finally {
-        // Reabilita o botão e restaura o texto original, independentemente do resultado
+        // Reabilita o botão e volta o texto original, independentemente do resultado
         submitButton.disabled = false;
         submitButton.textContent = originalButtonText;
     }
