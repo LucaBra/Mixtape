@@ -110,3 +110,49 @@ async function handleUpload() {
         submitButton.textContent = originalButtonText;
     }
 }
+
+// Drag & Drop para música
+function setupDragDrop() {
+    const uploadAreas = [
+        { element: songUpload, input: songInput, type: 'song' },
+        { element: artworkUpload, input: artworkInput, type: 'artwork' }
+    ];
+    
+    uploadAreas.forEach(({ element, input, type }) => {
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            element.addEventListener(eventName, preventDefaults, false);
+        });
+        
+        ['dragenter', 'dragover'].forEach(eventName => {
+            element.addEventListener(eventName, () => {
+                element.classList.add('drag-over');
+            }, false);
+        });
+        
+        ['dragleave', 'drop'].forEach(eventName => {
+            element.addEventListener(eventName, () => {
+                element.classList.remove('drag-over');
+            }, false);
+        });
+        
+        element.addEventListener('drop', (e) => {
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                const dataTransfer = new DataTransfer();
+                dataTransfer.items.add(files[0]);
+                input.files = dataTransfer.files;
+                
+                // Dispara evento change
+                input.dispatchEvent(new Event('change', { bubbles: true }));
+            }
+        }, false);
+    });
+}
+
+function preventDefaults(e) {
+    e.preventDefault();
+    e.stopPropagation();
+}
+
+// Inicializa
+setupDragDrop();

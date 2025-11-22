@@ -96,13 +96,12 @@ class AlbumPage {
                 trackTitle.textContent = track.title;
                 trackArtist.textContent = track.artists.join(', ');
                 
-                // Generate placeholder data
-                const duration = `${Math.floor(Math.random() * 3) + 2}:${String(Math.floor(Math.random() * 60)).padStart(2, '0')}`;
+                // Placeholder data for fields that should come from a backend
                 const plays = Math.floor(Math.random() * 100000) + 1000;
                 const bitrate = [128, 192, 256, 320][Math.floor(Math.random() * 4)];
                 const quality = bitrate >= 256 ? 'HQ' : 'SQ';
                 
-                if (trackDuration) trackDuration.textContent = duration;
+                if (trackDuration) trackDuration.textContent = '--:--'; // Placeholder para duração
                 if (trackPlays) trackPlays.textContent = plays;
                 if (trackDate) trackDate.textContent = new Date(track.uploadDate).toLocaleDateString();
                 if (trackBitrate) trackBitrate.textContent = `${bitrate} kbps`;
@@ -123,29 +122,18 @@ class AlbumPage {
 
     setupEventListeners() {
         // Track play functionality
-        document.querySelectorAll('.track-row').forEach(row => {
+        document.querySelectorAll('.track-row').forEach((row, index) => {
             row.addEventListener('click', () => {
-                const trackId = row.getAttribute('data-track-id');
-                const track = this.currentAlbum.tracks.find(t => t.id == trackId);
-
+                // Define a fila com todas as tracks do álbum
+                window.playQueue.setQueue(this.currentAlbum.tracks, index);
+                
+                const track = window.playQueue.getCurrentTrack();
                 if (!track || !track.songFile) {
-                    console.error("Música não encontrada ou arquivo de áudio ausente.");
+                    showNotification('Música não disponível', 'error');
                     return;
                 }
                 
-                console.log(`Playing track: ${track.title} by ${track.artists.join(', ')}`);
-                
-                // Update footer player
-                const titleLink = document.querySelector('.nameby div a');
-                const artistLink = document.querySelector('.nameby a:last-child');
-                if (titleLink) titleLink.textContent = track.title;
-                if (artistLink) artistLink.textContent = track.artists.join(', ');
-
-                // Carrega e toca a música
-                const audioPlayer = document.getElementById('audio-player');
-                audioPlayer.src = DataService.getMusicUrl(track.songFile);
-                audioPlayer.play();
-                setPlayingState(true); // Atualiza o estado global e o botão de play/pause
+                this.playTrack(track);
             });
         });
 
@@ -193,6 +181,123 @@ class AlbumPage {
             });
         }
 
+        window.addEventListener('playNextTrack', (e) => {
+            this.playTrack(e.detail);
+        });
+
+        // Botões Next e Previous
+        const forwardBtn = document.querySelector('button[onclick*="Forward"]')?.closest('.buttonsb');
+        const backBtn = document.querySelector('button[onclick*="Back"]')?.closest('.buttonsb');
+
+        if (forwardBtn) {
+            forwardBtn.onclick = () => {
+                const nextTrack = window.playQueue.next();
+                if (nextTrack) {
+                    this.playTrack(nextTrack);
+                } else {
+                    showNotification('Fim da fila', 'info');
+                }
+            };
+        }
+
+        if (backBtn) {
+            backBtn.onclick = () => {
+                const prevTrack = window.playQueue.previous();
+                if (prevTrack) {
+                    this.playTrack(prevTrack);
+                }
+            };
+        }
+
+        // Botão Shuffle
+        const shuffleBtn = document.querySelector('img[src*="Shuffle"]')?.closest('.buttonsb');
+        if (shuffleBtn) {
+            shuffleBtn.onclick = () => {
+                const isShuffled = window.playQueue.toggleShuffle();
+                shuffleBtn.style.opacity = isShuffled ? '1' : '0.6';
+                shuffleBtn.style.color = isShuffled ? '#1ed760' : '';
+                showNotification(isShuffled ? 'Aleatório ativado' : 'Aleatório desativado', 'info');
+            };
+        }
+
+        // Botão Loop
+        const loopBtn = document.querySelector('img[src*="Loop"]')?.closest('.buttonsb');
+        if (loopBtn) {
+            loopBtn.onclick = () => {
+                const mode = window.playQueue.toggleRepeat();
+                const modeText = {
+                    'none': 'Repetição desativada',
+                    'all': 'Repetir todas',
+                    'one': 'Repetir uma'
+                };
+                loopBtn.style.opacity = mode === 'none' ? '0.6' : '1';
+                showNotification(modeText[mode], 'info');
+            };
+        }
+
+    }
+
+    playTrack(track) {
+        console.log(`Playing: ${track.title}`);
+        
+        // Atualiza UI
+        this.updateNowPlayingUI(track);
+        
+        // Remove classe 'playing' de todas as tracks
+        document.querySelectorAll('.track-row').forEach(r => r.classList.remove('playing'));
+        
+        // Adiciona classe 'playing' na track atual
+        const currentRow = document.querySelector(`.track-row[data-track-id="${track.id}"]`);
+        if (currentRow) currentRow.classList.add('playing');
+        
+        // Carrega e toca
+        const audioPlayer = document.getElementById('audio-player');
+        if (!audioPlayer) {
+            showNotification('Player não encontrado', 'error');
+            return;
+        }
+        
+        const newSrc = DataService.getMusicUrl(track.songFile);
+
+        // Se a música já é a mesma, não recarregue
+        if (audioPlayer.src.endsWith(track.songFile)) {
+            // Apenas dá play se estiver pausado
+            audioPlayer.play()
+                .catch(err => console.error('Erro ao tocar:', err));
+            return;
+        }
+
+        // Música mudou → agora sim recarregar
+        audioPlayer.src = newSrc;
+
+        audioPlayer.play()
+            .catch(err => console.error('Erro ao tocar:', err));
+
+        // Ouve o evento 'loadedmetadata' para atualizar a duração na UI
+        const updateDurationOnUI = () => {
+            const currentRow = document.querySelector(`.track-row[data-track-id="${track.id}"]`);
+            if (currentRow) {
+                const durationElement = currentRow.querySelector('.track-duration');
+                if (durationElement && window.formatTime) {
+                    durationElement.textContent = window.formatTime(audioPlayer.duration);
+                }
+            }
+            // Remove o listener para não ser chamado múltiplas vezes
+            audioPlayer.removeEventListener('loadedmetadata', updateDurationOnUI);
+        };
+        audioPlayer.addEventListener('loadedmetadata', updateDurationOnUI);
+    }
+
+    updateNowPlayingUI(track) {
+        const titleLink = document.querySelector('.nameby div a');
+        const artistLink = document.querySelector('.nameby a:last-child');
+        const coverImg = document.querySelector('.coverimg');
+        
+        if (titleLink) titleLink.textContent = track.title;
+        if (artistLink) artistLink.textContent = track.artists.join(', ');
+        if (coverImg && track.artworkFile) {
+            coverImg.src = DataService.getArtworkUrl(track.artworkFile);
+        }
     }
 }
 
