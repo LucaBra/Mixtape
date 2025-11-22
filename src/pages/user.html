@@ -226,12 +226,11 @@
                     <button class="buttonsb">
                         <img src="../components/svg/Shuffle.svg" alt="">
                     </button>
-                    <script src="../scripts/sbar.js"></script>
                 </div>
             </div>
             <div class="options">
                 <div class="volume-control">
-                    <!--Volume&Options-->
+                    <audio id="audio-player"></audio>  <!-- ADICIONE ESTA LINHA -->
                     <span class="volume-icon">🔊</span>
                     <input type="range" min="0" max="100" value="50" class="volume">
                 </div>
@@ -239,6 +238,7 @@
             </div>
         </div>
     </footer>
+    <script src="../scripts/sbar.js"></script>
     <script src="../scripts/dataService.js"></script>
     <script src="../scripts/user.js"></script>
 </body>
