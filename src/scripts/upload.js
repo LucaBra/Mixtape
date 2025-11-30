@@ -4,6 +4,40 @@ const artworkPreview = document.getElementById('artworkPreview');
 const songUpload = document.getElementById('songUpload');
 const songInput = document.getElementById('songInput');
 
+const popupOverlay = document.getElementById('popupOverlay');
+const popupIcon = document.getElementById('popupIcon');
+const popupTitle = document.getElementById('popupTitle');
+const popupMessage = document.getElementById('popupMessage');
+const popupButton = document.getElementById('popupButton');
+
+function showPopup(title, message, type = 'info') {
+    popupTitle.textContent = title;
+    popupMessage.textContent = message;
+    
+    popupIcon.className = 'popup-icon ' + type;
+    if (type == 'success') {
+        popupIcon.textContent = '✓';
+    } else if (type == 'error') {
+        popupIcon.textContent = '✕';
+    } else {
+        popupIcon.textContent = 'ℹ';
+    }
+    
+    popupOverlay.classList.add('show');
+}
+
+function hidePopup() {
+    popupOverlay.classList.remove('show');
+}
+
+popupButton.addEventListener('click', hidePopup);
+
+popupOverlay.addEventListener('click', (e) => {
+    if (e.target === popupOverlay) {
+        hidePopup();
+    }
+});
+
 artworkUpload.addEventListener('click', () => {
     artworkInput.click();
 });
@@ -47,13 +81,13 @@ async function handleUpload() {
     const trackLink = document.getElementById('trackLink').value;
 
     if (!trackTitle || !artists) {
-        alert('Por favor, preencha os campos obrigatórios (Título e Artista).');
+        showPopup('Campos Obrigatórios', 'Por favor, preencha os campos obrigatórios (Título e Artista).', 'error');
         return;
     }
 
     const songFile = songInput.files[0];
     if (!songFile) {
-        alert('Por favor, selecione um arquivo de música.');
+        showPopup('Arquivo Obrigatório', 'Por favor, selecione um arquivo de música.', 'error');
         return;
     }
 
@@ -84,7 +118,7 @@ async function handleUpload() {
         const result = await response.json();
         
         if (result.success) {
-            alert('Faixa enviada com sucesso!'); // Idealmente, trocar por uma mensagem na tela
+            showPopup('Sucesso!', 'Faixa enviada com sucesso!', 'success');
             document.getElementById('trackTitle').value = '';
             document.getElementById('artists').value = '';
             document.getElementById('genre').value = '';
@@ -99,11 +133,11 @@ async function handleUpload() {
             songInput.value = '';
             artworkInput.value = '';
         } else {
-            alert('Erro ao enviar faixa: ' + result.message);
+            showPopup('Erro no Upload', 'Erro ao enviar faixa: ' + result.message, 'error');
         }
     } catch (error) {
         console.error('Upload error:', error);
-        alert('Erro ao enviar faixa. Verifique se o servidor está rodando em localhost:3000');
+        showPopup('Erro de Conexão', 'Erro ao enviar faixa. Verifique se o servidor está rodando em localhost:3000', 'error');
     } finally {
         // Reabilita o botão e volta o texto original, independentemente do resultado
         submitButton.disabled = false;

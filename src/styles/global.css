@@ -289,7 +289,7 @@ footer {
   transition: opacity 0.3s ease;
 }
 
-.coverimg:hover {
+.player-cover-img:hover {
   opacity: 0.9;
 }
 

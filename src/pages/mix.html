@@ -76,6 +76,34 @@
             <div class="mixer-content"><div class="mixer-channels" id="mixerChannels"></div></div>
         </div>
     </div>
+    
+    <div id="musicSearchOverlay" class="music-search-overlay hidden" onclick="closeMusicSearchOnOverlay(event)">
+        <div class="music-search-panel" onclick="event.stopPropagation()">
+            <div class="music-search-header">
+                <div class="music-search-title">Select Music for Track</div>
+                <button class="music-search-close" onclick="toggleMusicSearch()">×</button>
+            </div>
+            <div class="music-search-content">
+                <div class="selected-track-info" id="selectedTrackInfo">
+                    <div class="info-message">Select a track square first</div>
+                </div>
+                <div class="search-bar">
+                    <input type="text" id="musicSearchInput" placeholder="Search for tracks..." oninput="searchTracks()">
+                    <button class="search-btn">🔍</button>
+                </div>
+                <div class="tracks-list" id="tracksList">
+                    <div class="loading-message">Loading tracks...</div>
+                </div>
+                <div class="music-search-footer">
+                    <button class="assign-track-btn" onclick="assignSelectedTrack()" disabled>Assign Music</button>
+                    <button class="cancel-btn" onclick="toggleMusicSearch()">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="../scripts/dataService.js"></script>
+    <script src="../scripts/audioBarManager.js"></script>
     <script src="../scripts/mix.js"></script>
 </body>
 </html>

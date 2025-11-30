@@ -305,6 +305,127 @@ input[type="file"] {
     display: none;
 }
 
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.popup-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.popup-container {
+    background: linear-gradient(135deg, rgba(38, 78, 110, 0.95) 0%, rgba(12, 17, 31, 0.98) 100%);
+    border: 1px solid var(--cor-primaria);
+    border-radius: 12px;
+    padding: 0;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    transform: scale(0.8) translateY(20px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(10px);
+}
+
+.popup-overlay.show .popup-container {
+    transform: scale(1) translateY(0);
+}
+
+.popup-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 20px 20px 10px 20px;
+    border-bottom: 1px solid rgba(76, 155, 219, 0.2);
+}
+
+.popup-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+.popup-icon.success {
+    background-color: var(--cor-sucesso);
+    color: #000;
+}
+
+.popup-icon.error {
+    background-color: var(--cor-alerta);
+    color: #fff;
+}
+
+.popup-icon.info {
+    background-color: var(--cor-primaria);
+    color: #fff;
+}
+
+.popup-header h3 {
+    margin: 0;
+    color: var(--cor-branca);
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.popup-body {
+    padding: 20px;
+}
+
+.popup-body p {
+    margin: 0;
+    color: var(--cor-branca);
+    font-size: 14px;
+    line-height: 1.5;
+    opacity: 0.9;
+}
+
+.popup-footer {
+    padding: 10px 20px 20px 20px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.popup-button {
+    background-color: var(--cor-primaria);
+    color: var(--cor-branca);
+    border: none;
+    border-radius: 6px;
+    padding: 10px 24px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 80px;
+}
+
+.popup-button:hover {
+    background-color: #5aabeb;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(76, 155, 219, 0.4);
+}
+
+.popup-button:active {
+    transform: translateY(0);
+}
+
 @media (max-width: 768px) {
     .upload-container {
         grid-template-columns: 1fr;
