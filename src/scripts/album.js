@@ -158,21 +158,36 @@ class AlbumPage {
             });
         });
 
-        // Favorite functionality
+
         document.querySelectorAll('.track-favorite').forEach(fav => {
             fav.addEventListener('click', function(e) {
                 e.stopPropagation();
-                if (this.textContent === '♡') {
-                    this.textContent = '♥';
-                    this.style.color = '#1ed760';
+                const heartIcon = this.querySelector('.heart-icon');
+                if (heartIcon.src.includes('Heart.svg')) {
+                    heartIcon.src = '../components/svg/HeartFilled.svg';
+                    this.style.opacity = '1';
                 } else {
-                    this.textContent = '♡';
-                    this.style.color = '';
+                    heartIcon.src = '../components/svg/Heart.svg';
+                    this.style.opacity = '0.5';
                 }
             });
         });
 
-        // Volume control
+        const albumHeartBtn = document.querySelector('.heart-btn');
+        if (albumHeartBtn) {
+            albumHeartBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const heartIcon = this.querySelector('img');
+                if (heartIcon.src.includes('Heart.svg')) {
+                    heartIcon.src = '../components/svg/HeartFilled.svg';
+                    this.style.opacity = '1';
+                } else {
+                    heartIcon.src = '../components/svg/Heart.svg';
+                    this.style.opacity = '0.7';
+                }
+            });
+        }
+
         const volumeControl = document.querySelector('.volume');
         if (volumeControl) {
             const audioPlayer = document.getElementById('audio-player');
@@ -234,6 +249,8 @@ class AlbumPage {
                 showNotification(modeText[mode], 'info');
             };
         }
+
+
 
     }
 

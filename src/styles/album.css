@@ -1,4 +1,4 @@
-body{
+body {
     background: rgba(12, 17, 31, 1);
     color: var(--cor-branca);
     font-family: var(--font-main);
@@ -96,37 +96,74 @@ main {
 }
 
 .play-button {
-    width: 60px;
-    height: 60px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    padding: 0;
     background-color: var(--cor-primaria);
     border: none;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    color: black;
-    transition: transform 0.2s, background-color 0.2s;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    box-shadow: 0 2px 8px rgba(76, 155, 219, 0.4);
+}
+
+.play-button img {
+    width: 60px;
+    height: 60px;
+    opacity: 1;
+    pointer-events: none;
 }
 
 .play-button:hover {
-    transform: scale(1.05);
-    background-color: var(--cor-escura);
+    background-color: var(--cor-primaria);
+    box-shadow: 0 4px 16px rgba(76, 155, 219, 0.6);
+    transform: scale(1.07);
 }
 
 .control-btn {
-    background: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    padding: 0;
+    background-color: transparent;
     border: none;
-    color: var(--cor-branca);
-    font-size: 28px;
     cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+.control-btn img {
+    width: 35px;
+    height: 35px;
     opacity: 0.7;
-    transition: opacity 0.2s;
+    transition: all 0.2s ease;
+    pointer-events: none;
+    filter: brightness(0) invert(1);
+}
+
+.heart-btn img {
+    width: 30px;
+    height: 30px;
 }
 
 .control-btn:hover {
+    background-color: rgba(76, 155, 219, 0.2);
+    transform: scale(1.08);
+}
+
+.control-btn:hover img {
     opacity: 1;
+}
+
+.control-btn:active {
+    transform: scale(0.92);
 }
 
 .tracklist {
@@ -168,12 +205,7 @@ main {
     opacity: 0.7;
 }
 
-.track-row:hover .track-number {
-    opacity: 0;
-}
-
 .track-row:hover .track-number::after {
-    content: "▶";
     opacity: 1;
     position: absolute;
     left: 50%;
@@ -218,7 +250,9 @@ main {
     font-size: 0.85em;
 }
 
-.track-plays, .track-date, .track-bitrate {
+.track-plays,
+.track-date,
+.track-bitrate {
     color: var(--cor-branca);
     opacity: 0.7;
     font-size: 0.9em;
@@ -239,14 +273,22 @@ main {
 }
 
 .track-favorite {
-    color: var(--cor-branca);
     opacity: 0.5;
-    font-size: 18px;
     transition: opacity 0.2s;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .track-favorite:hover {
     opacity: 1;
+}
+
+.heart-icon {
+    width: 18px;
+    height: 18px;
+    filter: brightness(0) invert(1);
 }
 
 a {

@@ -683,3 +683,73 @@ footer {
     background: #2e77d0;
     color: #fff;
 }
+
+/* Menu Popup */
+.menu-popup {
+    position: fixed;
+    bottom: 100px;
+    right: 20px;
+    z-index: 1000;
+    background: rgba(20, 40, 55, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    border: 1px solid rgba(76, 155, 219, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    padding: 8px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+}
+
+.menu-popup.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.menu-popup-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.menu-option {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    width: 180px;
+    height: 44px;
+    background: transparent;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    padding: 0 16px;
+}
+
+.menu-option:hover {
+    background: rgba(76, 155, 219, 0.2);
+    transform: scale(1.02);
+}
+
+.menu-option img {
+    width: 24px;
+    height: 24px;
+    filter: brightness(0) invert(1);
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+    flex-shrink: 0;
+}
+
+.menu-option span {
+    color: var(--cor-branca);
+    font-size: 14px;
+    font-weight: 500;
+    opacity: 0.9;
+    transition: opacity 0.2s ease;
+}
+
+.menu-option:hover img,
+.menu-option:hover span {
+    opacity: 1;
+}

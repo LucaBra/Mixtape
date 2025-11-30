@@ -113,6 +113,35 @@ document.addEventListener('DOMContentLoaded', () => {
         volumeSlider.value = 50;
     }
 
+    const menuBtn = document.getElementById('menuBtn');
+    const menuPopup = document.getElementById('menuPopup');
+    
+    if (menuBtn && menuPopup) {
+        menuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            menuPopup.style.display = 'block';
+            setTimeout(() => menuPopup.classList.add('show'), 10);
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!menuPopup.contains(e.target) && e.target !== menuBtn) {
+                menuPopup.classList.remove('show');
+                setTimeout(() => menuPopup.style.display = 'none', 300);
+            }
+        });
+
+        // Menu options functionality
+        document.querySelectorAll('.menu-option').forEach(option => {
+            option.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const action = option.dataset.action;
+                
+                menuPopup.classList.remove('show');
+                setTimeout(() => menuPopup.style.display = 'none', 300);
+            });
+        });
+    }
+
     // Torna a função togglePlay global para ser acessível via onclick no HTML (solução de compatibilidade)
     window.togglePlay = togglePlay;
 });
