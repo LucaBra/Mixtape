@@ -66,8 +66,12 @@
             <button class="control-btn" aria-label="Ordem aleatória">
                 <img src="../components/svg/Shuffle.svg">
             </button>
-            <button class="control-btn" aria-label="Salvar na biblioteca">♡</button>
-            <button class="control-btn" aria-label="Mais opções">⋯</button>
+            <button class="control-btn heart-btn" aria-label="Salvar na biblioteca">
+                <img src="../components/svg/Heart.svg" alt="Coração">
+            </button>
+            <button class="control-btn" aria-label="Mais opções">
+                <img src="../components/svg/options.svg" alt="Opções">
+            </button>
         </div>
 
         <div class="tracklist">
@@ -95,7 +99,9 @@
                 <div class="track-date">?</div>
                 <div class="track-bitrate">? kbps</div>
                 <div><span class="quality-badge">?</span></div>
-                <div class="track-favorite">♡</div>
+                <div class="track-favorite">
+                    <img src="../components/svg/Heart.svg" alt="Coração" class="heart-icon">
+                </div>
             </div>
 
             <div class="track-row" data-track="2">
@@ -112,7 +118,9 @@
                 <div class="track-date">?</div>
                 <div class="track-bitrate">? kbps</div>
                 <div><span class="quality-badge">?</span></div>
-                <div class="track-favorite">♡</div>
+                <div class="track-favorite">
+                    <img src="../components/svg/Heart.svg" alt="Coração" class="heart-icon">
+                </div>
             </div>
 
             <div class="track-row" data-track="3">
@@ -129,7 +137,9 @@
                 <div class="track-date">?</div>
                 <div class="track-bitrate">? kbps</div>
                 <div><span class="quality-badge">?</span></div>
-                <div class="track-favorite">♡</div>
+                <div class="track-favorite">
+                    <img src="../components/svg/Heart.svg" alt="Coração" class="heart-icon">
+                </div>
             </div>
 
             <div class="track-row" data-track="4">
@@ -146,7 +156,9 @@
                 <div class="track-date">?</div>
                 <div class="track-bitrate">? kbps</div>
                 <div><span class="quality-badge">?</span></div>
-                <div class="track-favorite">♡</div>
+                <div class="track-favorite">
+                    <img src="../components/svg/Heart.svg" alt="Coração" class="heart-icon">
+                </div>
             </div>
 
             <div class="track-row" data-track="5">
@@ -163,7 +175,9 @@
                 <div class="track-date">?</div>
                 <div class="track-bitrate">? kbps</div>
                 <div><span class="quality-badge">?</span></div>
-                <div class="track-favorite">♡</div>
+                <div class="track-favorite">
+                    <img src="../components/svg/Heart.svg" alt="Coração" class="heart-icon">
+                </div>
             </div>
 
             <div class="track-row" data-track="6">
@@ -180,7 +194,9 @@
                 <div class="track-date">?</div>
                 <div class="track-bitrate">? kbps</div>
                 <div><span class="quality-badge">?</span></div>
-                <div class="track-favorite">♡</div>
+                <div class="track-favorite">
+                    <img src="../components/svg/Heart.svg" alt="Coração" class="heart-icon">
+                </div>
             </div>
         </div>
     </main>
@@ -237,10 +253,33 @@
                     <span class="volume-icon">🔊</span>
                     <input type="range" min="0" max="100" value="50" class="volume">
                 </div>
-                <img style="cursor:pointer;" src="../components/svg/Menu.svg" alt="">
+                <img id="menuBtn" style="cursor:pointer;" src="../components/svg/Menu.svg" alt="">
             </div>
         </div>
     </footer>
+    
+    <!-- Menu Popup -->
+    <div id="menuPopup" class="menu-popup" style="display: none;">
+        <div class="menu-popup-content">
+            <button class="menu-option" data-action="album">
+                <img src="../components/svg/albumpage.svg" alt="Álbum">
+                <span>Album Page</span>
+            </button>
+            <button class="menu-option" data-action="addqueue">
+                <img src="../components/svg/addqueue.svg" alt="Adicionar à fila">
+                <span>Add Queue</span>
+            </button>
+            <button class="menu-option" data-action="artist">
+                <img src="../components/svg/artist.svg" alt="Artista">
+                <span>Artist Page</span>
+            </button>
+            <button class="menu-option" data-action="share">
+                <img src="../components/svg/Share.svg" alt="Compartilhar">
+                <span>Share</span>
+            </button>
+        </div>
+    </div>
+    
     <script src="../scripts/keyboard.js"></script>
     <script src="../scripts/playQueue.js"></script>
     <script src="../scripts/notifications.js"></script>

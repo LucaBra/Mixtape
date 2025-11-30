@@ -233,10 +233,33 @@
                     <span class="volume-icon">🔊</span>
                     <input type="range" min="0" max="100" value="50" class="volume">
                 </div>
-                <img style="cursor:pointer;" src="../components/svg/Menu.svg" alt="">
+                <img id="menuBtn" style="cursor:pointer;" src="../components/svg/Menu.svg" alt="">
             </div>
         </div>
     </footer>
+    
+    <!-- Menu Popup -->
+    <div id="menuPopup" class="menu-popup" style="display: none;">
+        <div class="menu-popup-content">
+            <button class="menu-option" data-action="album">
+                <img src="../components/svg/albumpage.svg" alt="Álbum">
+                <span>Album Page</span>
+            </button>
+            <button class="menu-option" data-action="addqueue">
+                <img src="../components/svg/addqueue.svg" alt="Adicionar à fila">
+                <span>Add Queue</span>
+            </button>
+            <button class="menu-option" data-action="artist">
+                <img src="../components/svg/artist.svg" alt="Artista">
+                <span>Artist Page</span>
+            </button>
+            <button class="menu-option" data-action="share">
+                <img src="../components/svg/Share.svg" alt="Compartilhar">
+                <span>Share</span>
+            </button>
+        </div>
+    </div>
+    
     <script src="../scripts/keyboard.js"></script>
     <script src="../scripts/playQueue.js"></script>
     <script src="../scripts/notifications.js"></script>
