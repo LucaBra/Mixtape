@@ -186,14 +186,14 @@
         <div class="footer-bar">
             <div class="albumview">
                 <!--AlbumView-->
-                <div class="cover">
-                    <img class="coverimg" alt="">
+                <div class="player-cover-container">
+                    <img class="player-cover-img" alt="">
                 </div>
-                <div class="nameby">
-                    <div>
-                        <a href="">Title</a>
+                <div class="player-nowplaying">
+                    <div class="player-text">
+                        <a class="player-title" href="#">Title</a>
+                        <a class="player-artist" href="#">Artist</a>
                     </div>
-                    <a href="">Artist</a> 
                 </div>
             </div>
             <div class="butbar">
@@ -231,7 +231,7 @@
             </div>
             <div class="options">
                 <div class="volume-control">
-                    <audio id="audio-player"></audio>  <!-- ADICIONE ESTA LINHA -->
+                    <audio id="audio-player"></audio>
                     <span class="volume-icon">🔊</span>
                     <input type="range" min="0" max="100" value="50" class="volume">
                 </div>

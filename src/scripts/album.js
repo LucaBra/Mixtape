@@ -289,9 +289,9 @@ class AlbumPage {
     }
 
     updateNowPlayingUI(track) {
-        const titleLink = document.querySelector('.nameby div a');
-        const artistLink = document.querySelector('.nameby a:last-child');
-        const coverImg = document.querySelector('.coverimg');
+        const titleLink = document.querySelector('.player-title');
+        const artistLink = document.querySelector('.player-artist');
+        const coverImg = document.querySelector('.player-cover-img');
         
         if (titleLink) titleLink.textContent = track.title;
         if (artistLink) artistLink.textContent = track.artists.join(', ');

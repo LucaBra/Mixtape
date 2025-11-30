@@ -151,8 +151,8 @@ class UserPage {
                 console.log(`Playing track: ${trackName}`);
                 
                 // Update footer player if it exists
-                const titleLink = document.querySelector('.nameby div a');
-                const artistLink = document.querySelector('.nameby a:last-child');
+                const titleLink = document.querySelector('.player-title');
+                const artistLink = document.querySelector('.player-artist');
                 if (titleLink) titleLink.textContent = trackName;
                 if (artistLink) artistLink.textContent = this.currentArtist;
             });
