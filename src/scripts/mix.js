@@ -6,31 +6,34 @@ var workspaces = [{id: 0, tracks: [{id: 1, name: 'Track 1', color: '#3b82f6', ic
 var currentWorkspace = 0;
 var isPlaying = false;
 var effects = {vinylRecord: false, lofi: false, echo: false, distortion: false, chorus: false, phaser: false};
+var selectedTracks = new Set();
+var selectedTrackId = null;
+var availableTracks = [];
 
-async function loadData() {
+function loadData() {
     try {
-        var d = await window.storage.get('music-studio:workspaces');
-        if (d) workspaces = JSON.parse(d.value);
-        d = await window.storage.get('music-studio:current-workspace');
-        if (d) currentWorkspace = JSON.parse(d.value);
-        d = await window.storage.get('music-studio:effects');
-        if (d) effects = JSON.parse(d.value);
-        d = await window.storage.get('music-studio:scale');
-        if (d) currentScale = JSON.parse(d.value);
+        var w = localStorage.getItem('music-studio:workspaces');
+        if (w) workspaces = JSON.parse(w);
+        var cw = localStorage.getItem('music-studio:current-workspace');
+        if (cw) currentWorkspace = JSON.parse(cw);
+        var e = localStorage.getItem('music-studio:effects');
+        if (e) effects = JSON.parse(e);
+        var s = localStorage.getItem('music-studio:scale');
+        if (s) currentScale = JSON.parse(s);
     } catch (e) { console.log('Loading defaults'); }
 }
 
-async function saveData() {
+function saveData() {
     try {
-        await window.storage.set('music-studio:workspaces', JSON.stringify(workspaces));
-        await window.storage.set('music-studio:current-workspace', JSON.stringify(currentWorkspace));
-        await window.storage.set('music-studio:effects', JSON.stringify(effects));
-        await window.storage.set('music-studio:scale', JSON.stringify(currentScale));
+        localStorage.setItem('music-studio:workspaces', JSON.stringify(workspaces));
+        localStorage.setItem('music-studio:current-workspace', JSON.stringify(currentWorkspace));
+        localStorage.setItem('music-studio:effects', JSON.stringify(effects));
+        localStorage.setItem('music-studio:scale', JSON.stringify(currentScale));
     } catch (e) { console.error('Save error:', e); }
 }
 
-async function init() {
-    await loadData();
+function init() {
+    loadData();
     renderWorkspaces();
     renderTracks();
     setupColorPicker();
@@ -141,7 +144,12 @@ function showTrackMenu(t, b) {
     var addM = document.createElement('button');
     addM.className = 'menu-item';
     addM.textContent = 'Add Music';
-    addM.onclick = function() { alert('Add music from platform or upload MP3'); m.remove(); };
+    addM.onclick = function() { 
+        selectedTrackId = t.id;
+        renderTracks();
+        toggleMusicSearch(); 
+        m.remove(); 
+    };
     var del = document.createElement('button');
     del.className = 'menu-item danger';
     del.textContent = 'Delete';
@@ -409,6 +417,187 @@ function switchView(v) {
     document.getElementById('mainView').classList.toggle('hidden', v !== 'main');
     document.getElementById('minimalView').classList.toggle('hidden', v !== 'minimal');
     if (v === 'minimal') renderSoundsPopup();
+}
+
+async function fetchTracks() {
+    try {
+        const response = await fetch('http://localhost:3000/api/tracks');
+        if (response.ok) {
+            availableTracks = await response.json();
+            // Ordena por data de upload mais recente primeiro
+            availableTracks.sort((a, b) => new Date(b.uploadDate) - new Date(a.uploadDate));
+            renderTracksList();
+        } else {
+            console.error('Failed to fetch tracks');
+            const tracksList = document.getElementById('tracksList');
+            tracksList.innerHTML = '<div class="loading-message">Error loading tracks. Please try again.</div>';
+        }
+    } catch (error) {
+        console.error('Error fetching tracks:', error);
+        const tracksList = document.getElementById('tracksList');
+        tracksList.innerHTML = '<div class="loading-message">Connection error. Check if server is running.</div>';
+    }
+}
+
+function renderTracksList(searchTerm = '') {
+    const tracksList = document.getElementById('tracksList');
+    
+    if (!availableTracks || availableTracks.length === 0) {
+        tracksList.innerHTML = '<div class="loading-message">No tracks uploaded yet. Go to Upload page to add music!</div>';
+        return;
+    }
+    
+    const filteredTracks = availableTracks.filter(track => 
+        track.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        track.artists.some(artist => artist.toLowerCase().includes(searchTerm.toLowerCase())) ||
+        (track.genre && track.genre.toLowerCase().includes(searchTerm.toLowerCase()))
+    );
+
+    if (filteredTracks.length === 0) {
+        tracksList.innerHTML = '<div class="loading-message">No tracks found matching your search</div>';
+        return;
+    }
+
+    tracksList.innerHTML = '';
+    filteredTracks.forEach(track => {
+        const trackItem = document.createElement('div');
+        trackItem.className = 'track-item';
+        if (selectedTracks.has(track.id)) {
+            trackItem.classList.add('selected');
+        }
+
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.className = 'track-checkbox';
+        checkbox.checked = selectedTracks.has(track.id);
+        checkbox.onchange = () => toggleTrackSelection(track.id);
+
+        const trackInfo = document.createElement('div');
+        trackInfo.className = 'track-info';
+        
+        const title = document.createElement('div');
+        title.className = 'track-title';
+        title.textContent = track.title;
+        
+        const artist = document.createElement('div');
+        artist.className = 'track-artist';
+        artist.textContent = track.artists.join(', ');
+
+        trackInfo.appendChild(title);
+        trackInfo.appendChild(artist);
+
+        const trackMeta = document.createElement('div');
+        trackMeta.className = 'track-meta';
+        trackMeta.innerHTML = `
+            ${track.genre ? `<div><strong>Genre:</strong> ${track.genre}</div>` : ''}
+            ${track.uploadDate ? `<div><strong>Uploaded:</strong> ${new Date(track.uploadDate).toLocaleDateString()}</div>` : ''}
+            ${track.description ? `<div><strong>Description:</strong> ${track.description.substring(0, 50)}${track.description.length > 50 ? '...' : ''}</div>` : ''}
+        `;
+
+        trackItem.appendChild(checkbox);
+        trackItem.appendChild(trackInfo);
+        trackItem.appendChild(trackMeta);
+        
+        trackItem.onclick = (e) => {
+            if (e.target !== checkbox) {
+                checkbox.checked = !checkbox.checked;
+                toggleTrackSelection(track.id);
+            }
+        };
+
+        tracksList.appendChild(trackItem);
+    });
+}
+
+function toggleTrackSelection(trackId) {
+    selectedTracks.clear();
+    if (selectedTracks.has(trackId)) {
+        selectedTracks.delete(trackId);
+    } else {
+        selectedTracks.add(trackId);
+    }
+    renderTracksList(document.getElementById('musicSearchInput').value);
+    updateAssignButton();
+}
+
+function updateAssignButton() {
+    const assignBtn = document.querySelector('.assign-track-btn');
+    assignBtn.disabled = selectedTracks.size === 0 || !selectedTrackId;
+    assignBtn.textContent = selectedTracks.size > 0 ? 'Assign Music' : 'Select a track first';
+}
+
+async function toggleMusicSearch() {
+    const overlay = document.getElementById('musicSearchOverlay');
+    const isHidden = overlay.classList.contains('hidden');
+    
+    if (isHidden) {
+        overlay.classList.remove('hidden');
+        selectedTracks.clear();
+        // Mostra loading enquanto busca
+        const tracksList = document.getElementById('tracksList');
+        tracksList.innerHTML = '<div class="loading-message">Loading tracks from server...</div>';
+        await fetchTracks();
+        updateSelectedTrackInfo();
+        updateAssignButton();
+    } else {
+        overlay.classList.add('hidden');
+    }
+}
+
+function closeMusicSearchOnOverlay(e) {
+    if (e.target.id === 'musicSearchOverlay') {
+        toggleMusicSearch();
+    }
+}
+
+function updateSelectedTrackInfo() {
+    const infoDiv = document.getElementById('selectedTrackInfo');
+    if (selectedTrackId) {
+        const tr = getCurrentTracks();
+        const track = tr.find(t => t.id === selectedTrackId);
+        if (track) {
+            infoDiv.innerHTML = `
+                <div class="selected-track-details">
+                    <div class="selected-track-name">Selected: ${track.name}</div>
+                    <div>Click a music below to assign it to this track</div>
+                </div>
+            `;
+        }
+    } else {
+        infoDiv.innerHTML = `
+            <div class="selected-track-details">
+                <div class="selected-track-name">Browse available tracks</div>
+                <div>Click on any track square and select "Add Music" to assign tracks</div>
+            </div>
+        `;
+    }
+}
+
+function assignSelectedTrack() {
+    if (selectedTracks.size === 0 || !selectedTrackId) return;
+
+    const trackId = Array.from(selectedTracks)[0];
+    const trackData = availableTracks.find(t => t.id === trackId);
+    
+    if (!trackData) return;
+
+    const tr = getCurrentTracks();
+    const track = tr.find(t => t.id === selectedTrackId);
+    
+    if (track) {
+        track.name = trackData.title;
+        track.trackData = trackData;
+        updateWorkspaceTracks(tr);
+        renderTracks();
+        saveData();
+    }
+
+    toggleMusicSearch();
+}
+
+function searchTracks() {
+    const searchTerm = document.getElementById('musicSearchInput').value;
+    renderTracksList(searchTerm);
 }
 
 document.addEventListener('click', function(e) {
