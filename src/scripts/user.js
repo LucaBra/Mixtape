@@ -34,7 +34,7 @@ class UserPage {
             track.artists.includes(this.currentArtist)
         );
         
-        monthlyListeners.textContent = `${artistTracks.length * 1234} monthly listeners`;
+        monthlyListeners.textContent = `0 monthly listeners`;
         
         if (artistTracks.length > 0 && artistTracks[0].artworkFile) {
             artistImage.style.backgroundImage = `url(${DataService.getArtworkUrl(artistTracks[0].artworkFile)})`;
@@ -60,8 +60,8 @@ class UserPage {
                 
                 trackNumber.textContent = index + 1;
                 trackName.textContent = track.title;
-                trackPlays.textContent = `${Math.floor(Math.random() * 100000) + 1000} plays`;
-                trackDuration.textContent = `${Math.floor(Math.random() * 3) + 1}:${String(Math.floor(Math.random() * 60)).padStart(2, '0')}`;
+                trackPlays.textContent = `0 plays`;
+                trackDuration.textContent = `--:--`;
                 
                 if (track.artworkFile) {
                     trackCover.style.backgroundImage = `url(${DataService.getArtworkUrl(track.artworkFile)})`;
@@ -85,8 +85,8 @@ class UserPage {
         const uniqueAlbums = [...new Set(artistTracks.map(track => track.title))];
         const albumData = uniqueAlbums.slice(0, 5).map((title, index) => ({
             title: title,
-            year: 2020 + Math.floor(Math.random() * 5),
-            type: ['Album', 'Single', 'EP'][Math.floor(Math.random() * 3)],
+            year: 2025,
+            type: 'Single',
             track: artistTracks.find(t => t.title === title)
         }));
         
@@ -120,7 +120,6 @@ class UserPage {
     }
 
     setupEventListeners() {
-        // Play button
         const playButton = document.querySelector('.btn-play');
         if (playButton) {
             playButton.addEventListener('click', () => {
@@ -128,7 +127,6 @@ class UserPage {
             });
         }
 
-        // Follow button
         const followButton = document.querySelector('.btn-follow');
         if (followButton) {
             followButton.addEventListener('click', function() {
@@ -144,13 +142,11 @@ class UserPage {
             });
         }
 
-        // Track items
         document.querySelectorAll('.track-item').forEach(item => {
             item.addEventListener('click', function() {
                 const trackName = this.querySelector('.track-name').textContent;
                 console.log(`Playing track: ${trackName}`);
-                
-                // Update footer player if it exists
+
                 const titleLink = document.querySelector('.player-title');
                 const artistLink = document.querySelector('.player-artist');
                 if (titleLink) titleLink.textContent = trackName;
@@ -158,7 +154,6 @@ class UserPage {
             });
         });
 
-        // Favorite buttons
         document.querySelectorAll('.icon-btn').forEach(btn => {
             btn.addEventListener('click', function(e) {
                 e.stopPropagation();
@@ -172,14 +167,12 @@ class UserPage {
             });
         });
 
-        // Footer player buttons
         document.querySelectorAll('.buttonsb').forEach(btn => {
             btn.addEventListener('click', function() {
                 console.log('Player button clicked');
             });
         });
 
-        // Volume control
         const volumeControl = document.querySelector('.volume');
         if (volumeControl) {
             volumeControl.addEventListener('input', function() {
