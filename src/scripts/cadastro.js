@@ -63,12 +63,12 @@ function validateField(field, errorId, validationFn) {
 
 validateField(nome, "nome-error", (value) => value.trim().length >= 3);
 validateField(email, "email-error", (value) =>
-  /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
+  /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value),
 );
 validateField(
   telefone,
   "telefone-error",
-  (value) => value.replace(/\D/g, "").length >= 10
+  (value) => value.replace(/\D/g, "").length >= 10,
 );
 validateField(senha, "senha-error", (value) => value.length >= 6);
 
@@ -102,15 +102,24 @@ form.addEventListener("submit", (e) => {
     alerta.classList.add("show");
     setTimeout(() => alerta.classList.remove("show"), 3000);
   } else {
-    // Aqui você colocaria sua lógica de cadastro
-    console.log("Cadastro realizado:", {
+    // Salvar dados no localStorage
+    const userData = {
+      username: email.value.split("@")[0],
       nome: nome.value,
       email: email.value,
       telefone: telefone.value,
-    });
+      senha: senha.value,
+      dataCadastro: new Date().toISOString(),
+    };
+
+    localStorage.setItem("userData", JSON.stringify(userData));
 
     alerta.style.background = "#4CAF50";
     alerta.textContent = "Cadastro realizado com sucesso!";
     alerta.classList.add("show");
+
+    setTimeout(() => {
+      window.location.href = "./login.html";
+    }, 2000);
   }
 });

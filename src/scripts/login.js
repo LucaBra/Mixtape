@@ -27,18 +27,34 @@ if (loginBtn) {
     const senha = document.getElementById("password").value;
     
     if (email && senha) {
-      const nomeUsuario = email.split("@")[0];
+      const userData = JSON.parse(localStorage.getItem('userData'));
+      
+      if (!userData || userData.email !== email) {
+        alerta.textContent = "E-mail não cadastrado.";
+        alerta.classList.add("show");
+        setTimeout(() => alerta.classList.remove("show"), 3000);
+        return;
+      }
+      
+      if (userData.senha !== senha) {
+        alerta.textContent = "Senha incorreta.";
+        alerta.classList.add("show");
+        setTimeout(() => alerta.classList.remove("show"), 3000);
+        return;
+      }
+      
+      const nomeUsuario = userData.nome;
       localStorage.setItem("token", tokenFake);
       localStorage.setItem("nomeUsuario", nomeUsuario);
 
       const success = document.getElementById("success");
-      success.textContent = "Login bem-sucedido! Token armazenado.";
+      success.textContent = "Login bem-sucedido!";
       success.classList.add("show");
 
       setTimeout(() => {
         success.classList.remove("show");
         window.location.href = "../pages/tape.html";
-      }, 3000);
+      }, 2000);
 
     } else {
       alerta.textContent = "Preencha e-mail e senha.";
