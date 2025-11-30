@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (nextTrack) {
             window.dispatchEvent(new CustomEvent('playNextTrack', { detail: nextTrack }));
         } else {
-            setPlayingState(false); // Garante que o botão volte para "Play"
+            setPlayingState(false); // Garante que o botão volte pra "Play"
         }
     });
 
@@ -142,6 +142,23 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Torna a função togglePlay global para ser acessível via onclick no HTML (solução de compatibilidade)
+    // Torna a função togglePlay global pra ser acessível via onclick no HTML (solução de compatibilidade)
     window.togglePlay = togglePlay;
+
+    const footer = document.querySelector('footer');
+    const toggleFooterBtn = document.getElementById('toggleFooterBtn');
+
+    let footerOpen = true;
+
+    toggleFooterBtn.addEventListener('click', () => {
+        footerOpen = !footerOpen;
+
+        if (footerOpen) {
+            footer.classList.remove('collapsed');
+            toggleFooterBtn.textContent = 'v'; // seta pra baixo
+        } else {
+            footer.classList.add('collapsed');
+            toggleFooterBtn.textContent = '⌃'; // seta pra cima
+        }
+    });
 });
