@@ -266,7 +266,22 @@ footer {
   box-shadow: 0 6px 20px rgba(76, 155, 219, 0.5);
 }
 
-.coverimg {
+/* padronizando o player em si*/
+.player-nowplaying {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0; /* importante para o text-overflow funcionar */
+}
+
+/* Capa */
+.player-cover-container {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+}
+
+.player-cover-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -278,40 +293,42 @@ footer {
   opacity: 0.9;
 }
 
-.nameby {
+/* Texto (título e artista) */
+.player-text {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 3px;
-  width: 100%;
   overflow: hidden;
+  min-width: 0;
 }
 
-.nameby div:first-child a {
+/* Título */
+.player-title {
   color: var(--cor-branca);
   text-decoration: none;
   font-size: 0.9rem;
   font-weight: 600;
-  display: block;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   transition: color 0.2s ease;
 }
 
-.nameby a:last-child {
+/* Artista */
+.player-artist {
   color: var(--cor-branca);
   text-decoration: none;
   font-size: 0.8rem;
   opacity: 0.7;
-  display: block;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   transition: color 0.2s ease, opacity 0.2s ease;
 }
 
-.nameby a:hover {
+/* Hover */
+.player-title:hover,
+.player-artist:hover {
   color: var(--cor-primaria);
   opacity: 1;
 }
@@ -354,13 +371,12 @@ footer {
 .buttonsb img {
   width: 20px;
   height: 20px;
-  filter: brightness(0) invert(1);
   opacity: 0.7;
   transition: all 0.2s ease;
   pointer-events: none;
 }
 
-/* Botão de play - destaque */
+/* Destaque pro Botão de play (4º elemento do buttonsb) */
 .buttonsb:nth-child(4) {
   width: 40px;
   height: 40px;
@@ -369,8 +385,8 @@ footer {
 }
 
 .buttonsb:nth-child(4) img {
-  width: 20px;
-  height: 20px;
+  width: 35px;
+  height: 35px;
   opacity: 1;
 }
 
