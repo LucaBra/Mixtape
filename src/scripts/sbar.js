@@ -130,16 +130,75 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Menu options functionality
+        // Opcoes do menu
         document.querySelectorAll('.menu-option').forEach(option => {
             option.addEventListener('click', (e) => {
                 e.stopPropagation();
                 const action = option.dataset.action;
                 
+                switch(action) {
+                    case 'album':
+                        // Ir para a pagina do album
+                        const currentTrack = window.playQueue?.getCurrentTrack();
+                        if (currentTrack) {
+                            const albumName = encodeURIComponent(currentTrack.title || 'Unknown Album');
+                            window.location.href = `album.html?album=${albumName}`;
+                        } else {
+                            showNotification('Nenhuma música tocando', 'error');
+                        }
+                        break;
+                    case 'artist':
+                        // Ir para a pagina do artista
+                        const currentTrackForArtist = window.playQueue?.getCurrentTrack();
+                        if (currentTrackForArtist && currentTrackForArtist.artists && currentTrackForArtist.artists.length > 0) {
+                            const artistName = encodeURIComponent(currentTrackForArtist.artists[0] || 'Unknown Artist');
+                            window.location.href = `user.html?artist=${artistName}`;
+                        } else {
+                            showNotification('Nenhuma música tocando', 'error');
+                        }
+                        break;
+                    case 'addqueue':
+                        showNotification('Adicionando à fila', 'info');
+                        break;
+                    case 'share':
+                        showNotification('Compartilhando música', 'info');
+                        break;
+                }
+                
                 menuPopup.classList.remove('show');
                 setTimeout(() => menuPopup.style.display = 'none', 300);
             });
         });
+
+        // links para os artistas e album
+        const playerArtist = document.querySelector('.player-artist');
+        const playerTitle = document.querySelector('.player-title');
+        
+        if (playerArtist) {
+            playerArtist.addEventListener('click', (e) => {
+                e.preventDefault();
+                const currentTrack = window.playQueue?.getCurrentTrack();
+                if (currentTrack && currentTrack.artists && currentTrack.artists.length > 0) {
+                    const artistName = encodeURIComponent(currentTrack.artists[0] || 'Unknown Artist');
+                    window.location.href = `user.html?artist=${artistName}`;
+                } else {
+                    showNotification('Nenhuma música tocando', 'error');
+                }
+            });
+        }
+        
+        if (playerTitle) {
+            playerTitle.addEventListener('click', (e) => {
+                e.preventDefault();
+                const currentTrack = window.playQueue?.getCurrentTrack();
+                if (currentTrack) {
+                    const albumName = encodeURIComponent(currentTrack.title || 'Unknown Album');
+                    window.location.href = `album.html?album=${albumName}`;
+                } else {
+                    showNotification('Nenhuma música tocando', 'error');
+                }
+            });
+        }
     }
 
     // Torna a função togglePlay global pra ser acessível via onclick no HTML (solução de compatibilidade)
