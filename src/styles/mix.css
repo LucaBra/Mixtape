@@ -847,3 +847,217 @@ body {
     border-radius: 4px;
     transition: background 0.2s;
 }
+
+.music-search-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+
+.music-search-panel {
+    background: #1f2937;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 80vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.music-search-header {
+    height: 64px;
+    background: #111827;
+    border-bottom: 1px solid #374151;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+}
+
+.music-search-title {
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.music-search-close {
+    color: white;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.music-search-close:hover {
+    color: #ef4444;
+}
+
+.music-search-content {
+    flex: 1;
+    padding: 24px;
+    overflow-y: auto;
+}
+
+.selected-track-info {
+    background: #374151;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+}
+
+.info-message {
+    color: #9ca3af;
+    text-align: center;
+}
+
+.selected-track-details {
+    color: white;
+}
+
+.selected-track-name {
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.search-bar {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.search-bar input {
+    flex: 1;
+    padding: 12px;
+    background: #374151;
+    border: 1px solid #4b5563;
+    border-radius: 8px;
+    color: white;
+    font-size: 14px;
+}
+
+.search-bar input::placeholder {
+    color: #9ca3af;
+}
+
+.search-bar input:focus {
+    outline: none;
+    border-color: #2563eb;
+}
+
+.search-btn {
+    padding: 12px 16px;
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.2s;
+}
+
+.search-btn:hover {
+    background: #1d4ed8;
+}
+
+.tracks-list {
+    max-height: 300px;
+    overflow-y: auto;
+    margin-bottom: 16px;
+}
+
+.track-item {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    background: #374151;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.track-item:hover {
+    background: #4b5563;
+}
+
+.track-item.selected {
+    background: #2563eb;
+}
+
+.track-checkbox {
+    margin-right: 12px;
+}
+
+.track-info {
+    flex: 1;
+}
+
+.track-title {
+    color: white;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.track-artist {
+    color: #9ca3af;
+    font-size: 14px;
+}
+
+.track-meta {
+    color: #6b7280;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+.loading-message {
+    color: #9ca3af;
+    text-align: center;
+    padding: 20px;
+}
+
+.music-search-footer {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+}
+
+.assign-track-btn {
+    padding: 12px 24px;
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.2s;
+}
+
+.assign-track-btn:hover:not(:disabled) {
+    background: #1d4ed8;
+}
+
+.assign-track-btn:disabled {
+    background: #4b5563;
+    cursor: not-allowed;
+}
+
+.cancel-btn {
+    padding: 12px 24px;
+    background: #6b7280;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.2s;
+}
+
+.cancel-btn:hover {
+    background: #4b5563;
+}
