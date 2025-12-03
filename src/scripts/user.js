@@ -106,7 +106,7 @@ class UserPage {
                     albumCover.style.backgroundPosition = 'center';
                 }
                 
-                // Add click event to navigate to specific album page
+                // Adiciona evento de clique para navegar para uma pagina de album especifica
                 card.addEventListener('click', () => {
                     const albumName = encodeURIComponent(album.title);
                     window.location.href = `album.html?album=${albumName}`;
