@@ -52,7 +52,7 @@ class DataService {
     static groupTracksByAlbum(tracks) {
         const albums = {};
         tracks.forEach(track => {
-            const albumName = track.title; // Using track title as album name for now
+            const albumName = track.title; // Usando o nome da track como o nome do album por enquanto
             if (!albums[albumName]) {
                 albums[albumName] = {
                     name: albumName,
